@@ -1,0 +1,32 @@
+# Config file for opioid_trends project. A single place where we can
+# specify if we want to keep intermediate files (and if so, which ones),
+# years we want to do analysis, location of processed and intermediate files,
+# etc.
+#
+# You can make your own config (everything inherits from `default` so just
+# change what you want), and then set it as a global in your own computer:
+# `Sys.setenv(R_CONFIG_ACTIVE = "dev")`
+#
+# or you can use config::get(config = "dev"); however, you'll need to set it
+# every time you run the code so the global setting is preferred.
+
+default:
+  delete_zip_orig: true     # After downloading, del original zip file?
+  delete_trimmed: true      # Delete the "trimmed" data file?
+  delete_cleaned: true      # Delete the cleaned files after collapsing
+  start_year: 1979          # Year to start
+  end_year: 2015            # Year to end
+  num_decimals: 1           # Number of decimals for tables 1 and 2
+  num_decimals_supp: 2      # Number of decimals for supplemental tables
+  raw_folder: './raw_data'  # Where to save unprocessed data
+  sav_folder: './data'      # Where to save processed data
+  output_folder: './output' # Where to save plots/tables/supplemental material
+  proc_in_parallel: false   # When true, perform calculations in parallel
+
+# This config version is for me to debug. Keeps original files so I don't
+# need to keep downloading over and over.
+dev:
+  delete_zip_orig: false
+  delete_trimmed: false
+  delete_cleaned: false
+  proc_in_parallel: true
