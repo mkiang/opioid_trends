@@ -32,3 +32,7 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .DS_Store
+
+# Packrat and rproj
+packrat/lib*/
+.Rproj.user
