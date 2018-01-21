@@ -1,0 +1,78 @@
+---
+output: 
+  github_document:
+    toc: true
+    toc_depth: 2
+---
+
+## Introduction
+
+Code for our paper ["Trends in Black and White Opioid Mortality in the United States, 1979-2015"](LINK), which uses multiple cause of death data to examine racial differences in opioid mortality over time. The full citation is:
+
+> PAPER CITATION
+
+Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues) or email.
+
+## Requirements
+### Software
+We use `R` and the Joinpoint Regression Program to conduct the analyses in the paper.
+
+- `R` can be [downloaded here](https://cran.r-project.org/).
+- The Joinpoint Regression Program can be [downloaded here](https://surveillance.cancer.gov/joinpoint/)
+- In addition, we highly recommend the use of RStudio when running `R`. RStudio can be [downlaoded here](https://www.rstudio.com/products/rstudio/download/).
+
+### `R` Packages
+To run this code, you'll need the following `R` packages from CRAN:
+
+- `tidyverse`
+- `haven`
+- `doParallel`
+- `foreach`
+
+In addition, you'll need our package for working with multiple cause of death data, [`narcan`](https://github.com/mkiang/narcan), which is not available on CRAN.
+
+You can install these packages either by using the `00_install_packages.R` script or by using RStudio to open the `opioid_trends.Rproj` file. Using RStudio is the preferred method as `packrat` will automatically make sure you have the correct version of all necessary packages.
+
+## Analysis pipeline
+
+We conduct all 
+
+### Configuation file
+
+The `config.yml` file contains several global parameters for the analysis pipeline. Specifically:
+
+- `delete_zip_orig`: Allows the user to specify if the original MCOD files should be deleted (default: `true`) or saved (`false`) after it has been trimmed in Step 1. These files are typically 75 MB per year.
+- `delete_trimmed`: Allows the user to specify if the smaller MCOD files should be deleted (default: `true`) or saved (`false`) after it has been subsetted in the Step 1. These files are typically around 20 MB per year.
+- `delete_processed:` Allows the user to specify if the uncollapsed MCOD files should be deleted (`true`) or saved (default: `false`) after they have been aggregated in Step 3. These files are typically around 15 MB per year. We save them by default to facilitate additional analyses or debugging; however they are not necessary in terms of purely replicating the published analysis.
+- `start_year` and `end_year`: Specify the start (default: `1979`) and end (default: `2015`) years of the analysis. Going earlier than 1979 will not work (due to different ICD codes), but as new data gets released, going later than 2016 *should* work.
+- `raw_folder`: Specifies where the raw and trimmed MCOD files should be downloaded (default: `'./raw_data'`).
+- `sav_folder`: Specifies where the processed data files (i.e., working data) should be saved (default: `'./data'`).
+- `plot_folder`: Specifies where plots should be saved (default: `'./plots'`).
+- `rmd_folder`: Specifies where `rmarkdown` files, and their output (i.e., tables), should be saved (default: `'./rmds'`).
+- `proc_in_parallel`: Specifies if downloading and processing should be performed in parallel (`true`) or serially (default: `false`).
+
+Typically, a user should not need to change any of these parameters; however, on a computer with sufficient RAM, setting `proc_in_parallel` to `true` should result in significant speedup. Be warned that this will result in significant RAM usage (~ 32 GB of RAM for four processes).
+
+
+
+### Steps 0-X: Data download and munging
+
+Unforuntately, parts of this analyses require using the NCI Joinpoint Regression Program, and thus are not fully reproducible. However, we include all output and input files required to (re)run the joinpoint parts of the pipeline in the next section.
+
+
+
+The pipeline is broken into discrete files and steps.
+
+1. `01_download_and_trim_raw_data.R`: Downloads data directly from the NBER website and "trims" the dataset by subsetting only to the columns we will use for analysis. In the `config.yml` file, the user can specify if the raw (untrimmed) data should be kept. The raw data take up approximately 2.9 GB of space (when compressed). The trimmed files take up approximately 900 MB when compressed. When running this process in parallel (that is, setting the `proc_in_parallel` option to `true` in the `config.yml` file), each process consumes 3.5–4 GB of RAM and the default number of processes is half of the available cores. Make sure your computer is capable of this before setting this option to true.
+
+### Joinpoint regressions
+
+Reproducing `joinpoint` analyses
+
+## Authors
+- [Monica Alexander](http://monicaalexander.com) ([GitHub](https://github.com/MJAlexander))
+- [Magali Barbieri](http://www.demog.berkeley.edu/directories/profiles/barbieri.shtml)
+- [Mathew Kiang](https://mathewkiang.com) ([GitHub](https://github.com/mkiang))
+
+## Footnotes
+[^1]: We are investigating ways of reproducing the Joinpoint Regression Program using open-source statistical programs.
