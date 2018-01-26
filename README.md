@@ -162,4 +162,4 @@ Footnotes
 
 [1] We are investigating ways of reproducing the Joinpoint Regression Program using open-source statistical programs, and may update this code in the future.
 
-[2] You can also open the output file (`.jpo`) and click on "Retreieve Session."
+[2] You can also open the output file (`.jpo`) and click on "Retrieve Session."
