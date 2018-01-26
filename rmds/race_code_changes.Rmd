@@ -1,0 +1,81 @@
+---
+title: "Code changes for race variable"
+author: "Mathew Kiang"
+date: "6/18/2017"
+output:
+  pdf_document: default
+---
+
+## Introduction
+The multiple cause of death files we are using go from 1979 to 2015. During this time, there have been several changes in how `race` is coded. This document just tracks those changes.
+
+Bold lines are codes that changed from the previous iteration.
+
+## 1979 - 1981
+
+- 00 Other Asian or Pacific Islander
+- 01 White
+- 02 Black
+- 03 Indian (includes Aleuts and Eskimos) 
+- 04 Chinese
+- 05 Japanese
+- 06 Hawaiian (includes Part-Hawaiian)
+- 07 All other
+- 08 Filipino
+
+## 1982 - 1988
+Just label changes here.
+
+- 00 Other Asian or Pacific Islander
+- 01 White
+- 02 Black
+- **03 American Indian (includes Aleuts and Eskimos)**
+- 04 Chinese
+- 05 Japanese
+- 06 Hawaiian (includes Part-Hawaiian)
+- **07 All other races**
+- 08 Filipino
+
+## 1989 - 1991
+
+- 01 White
+- 02 Black
+- 03 American Indian (includes Aleuts and Eskimos) 
+- 04 Chinese
+- 05 Japanese
+- 06 Hawaiian (includes Part-Hawaiian)
+- **07 Filipino**
+- **08 Other Asian or Pacific Islander**
+- **09 All other races**
+
+## 1992 - 2015
+
+- 01 White
+- 02 Black
+- 03 American Indian (includes Aleuts and Eskimos)
+- 04 Chinese
+- 05 Japanese
+- 06 Hawaiian (includes Part-Hawaiian)
+- 07 Filipino
+- **18 Asian Indian**
+- **28 Korean**
+- **38 Samoan**
+- **48 Vietnamese**
+- **58 Guamanian**
+- **68 Other Asian or Pacific Islander**
+- **78 Combined other Asian or Pacific Islander**
+
+## Our standardized race codes
+We don't need all the specifics so we will be using a collapsed version of the 1992 to 2015 codes:
+
+- 01 White
+- 02 Black
+- 03 American Indian (includes Aleuts and Eskimos)
+- 04 Chinese
+- 05 Japanese
+- 06 Hawaiian (includes Part-Hawaiian)
+- 07 Filipino
+- **99** All others
+
+In the processing step, we will remap all the race codes to this standard.
+

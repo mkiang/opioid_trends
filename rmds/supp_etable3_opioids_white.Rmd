@@ -1,0 +1,172 @@
+---
+title: "eTable 3. Joinpoint results for opioid deaths in the white population, 1979-2015"
+output: word_document
+---
+    
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+
+import_jp_file <- function(filename) {
+    df <- readr::read_delim(filename, delim = ";", escape_double =  FALSE, 
+                            trim_ws = TRUE)
+    names(df) <- tolower(names(df))
+    names(df) <- gsub(" ", "", names(df))
+    names(df) <- gsub(",|=|\\.", "_", names(df))
+    names(df) <- gsub("-|%|\\(|\\)|\\#", "", names(df))
+    
+    return(df)
+}
+
+import_aapc_file <- function(filename) {
+    df <- import_jp_file(filename)
+    df <- df %>% 
+        mutate(
+            period = c(sprintf("%i-%i", startobs, endobs)), 
+            aapc = sprintf("%0.2f (%0.2f, %0.2f)", round(aapc, 2), 
+                           round(aapcc_i_low, 2), round(aapcc_i_high, 2)), 
+            pvalue = case_when(
+                pvalue < .001 ~ "< 0.001",
+                pvalue < .01 ~ "< .01", 
+                pvalue < .05 ~ "< .05", 
+                TRUE ~ sprintf("= %0.2f", pvalue))) %>% 
+        select(-joinpointmodel, -aapcindex, -statisticallysignificant0_no1_yes, 
+               -teststatistic, -aapcc_i_low, -aapcc_i_high, -startobs, -endobs)
+    
+    return(df)
+}
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+## Import data
+
+base_path <- "./joinpoint_analysis/01_opioid_rates_long/01_opioid_rates_long"
+
+## Opioid Average APC
+opioids_aapc <- import_aapc_file(paste0(base_path, ".aapc.txt")) %>% 
+    filter(race %in% c("white")) %>% 
+    mutate(opioid_type = factor(opioid_type, 
+                               levels = c("opioid", "nonopioid", "drug"), 
+                               labels = c("Opioid deaths", 
+                                          "Non-opioid drug deaths", 
+                                          "All drug deaths"), 
+                               ordered = TRUE), 
+           race = factor(race, 
+                         levels = c("white", "black", "total"), 
+                         labels = c("White", "Black", "All"), 
+                         ordered = TRUE)) %>% 
+    select(`Time period` = period, Race = race, Outcome = opioid_type, 
+           `Average APC (95% CI)` = aapc, `*P* value` = pvalue)
+
+## APC
+opioids_apc <- import_jp_file(paste0(base_path, ".apc.txt")) %>% 
+    filter(race %in% c("white")) %>% 
+    mutate(opioid_type = factor(opioid_type, 
+                               levels = c("opioid", "nonopioid", "drug"), 
+                               labels = c("Opioid deaths", 
+                                          "Non-opioid drug deaths", 
+                                          "All drug deaths"), 
+                               ordered = TRUE), 
+           race = factor(race, 
+                         levels = c("white", "black", "total"), 
+                         labels = c("White", "Black", "All"), 
+                         ordered = TRUE), 
+           segment = sprintf("%i-%i", segmentstart, segmentend), 
+           apc = sprintf("%0.2f (%0.2f, %0.2f)", round(apc, 2), 
+                         round(apc95lcl, 2), round(apc95ucl, 2)), 
+           pvalue = case_when(
+               pvalue < .001 ~ "< 0.001",
+               pvalue < .01 ~ "< .01", 
+               pvalue < .05 ~ "< .05", 
+               TRUE ~ sprintf("= %0.2f", pvalue))) %>% 
+    select(-segmentstart, -segmentend, 
+           -apc95lcl, -apc95ucl, -apcsignificant, -teststatistic) %>% 
+    select(`Time period` = segment, Race = race, Outcome = opioid_type, 
+           `APC (95% CI)` = apc, `*P* value` = pvalue)
+
+## Model estimates
+all_df <- import_jp_file(paste0(base_path, ".modelestimates.txt")) %>% 
+    mutate(opioid_type = factor(opioid_type, 
+                               levels = c("opioid", "nonopioid", "drug"), 
+                               labels = c("Opioid deaths", 
+                                          "Non-opioid drug deaths", 
+                                          "All drug deaths"), 
+                               ordered = TRUE), 
+           race = factor(race, 
+                         levels = c("white", "black", "total"), 
+                         labels = c("White", "Black", "All"), 
+                         ordered = TRUE), 
+           interceptpvalue = case_when(
+               interceptpvalue < .001 ~ "< 0.001",
+               interceptpvalue < .01 ~ "< .01", 
+               interceptpvalue < .05 ~ "< .05", 
+               TRUE ~ sprintf("= %0.2f", interceptpvalue)), 
+           slopepvalue = case_when(
+               slopepvalue < .001 ~ "< 0.001",
+               slopepvalue < .01 ~ "< .01", 
+               slopepvalue < .05 ~ "< .05", 
+               TRUE ~ sprintf("= %0.2f", slopepvalue)), 
+           slopechgpvalue = case_when(
+               slopechgpvalue < .001 ~ "< 0.001",
+               slopechgpvalue < .01 ~ "< .01", 
+               slopechgpvalue < .05 ~ "< .05", 
+               is.na(slopechgpvalue) ~ "NA", 
+               TRUE ~ sprintf("= %0.2f", slopechgpvalue)))
+
+model_summary <- all_df %>% 
+    select(opioid_type, race, obs, param, df, sse, mse) %>% 
+    distinct() %>% 
+    select(Outcome = opioid_type, Race = race, `Obs. (N)` = obs, 
+           `Parameters` = param, `Degrees of Freedom` = df, 
+           `Sum of squared errors` = sse, `Mean squared error` = mse)
+
+model_estimates <- all_df %>% 
+    select(race, opioid_type, joinpoint, joinpoint95lcl, joinpoint95ucl, 
+           interceptestimate, interceptstderror, interceptpvalue, 
+           slopeestimate, slopestderror, slopepvalue, 
+           slopechgestimate, slopechgstderror, slopechgpvalue) %>% 
+    mutate(
+        starting_year = case_when(
+            is.na(joinpoint) ~ "1979 (Starting year)", 
+            TRUE ~ sprintf("%s (%s, %s)", joinpoint, 
+                           joinpoint95lcl, joinpoint95ucl)), 
+        intercept = sprintf("%0.2f (%0.2f)", 
+                            interceptestimate, interceptstderror), 
+        slope =  sprintf("%0.2f (%0.2f)", 
+                         slopeestimate, slopestderror), 
+        slopechg =  case_when(
+            is.na(joinpoint) ~ "NA", 
+            TRUE ~ sprintf("%0.2f (%0.2f)", slopechgestimate, 
+                           slopechgstderror))) %>% 
+    select(Race = race, Outcome = opioid_type, `Year (95% CI)` = starting_year, 
+           `Intercept (SE)`= intercept, `Intercept *P* Value` = interceptpvalue, 
+           `Slope (SE)` = slope, `Slope *P* Value` = slopepvalue, 
+           `Change in Slope (SE)` = slopechg, `Slope Change *P* Value` = slopechgpvalue)
+```
+
+# eTable 3: Opioid deaths, white population, 1979-2015
+## Average APC
+```{r echo=FALSE, message=FALSE}
+knitr::kable(opioids_aapc %>% filter(Outcome == "Opioid deaths"))
+```
+
+## Joinpoint Summary (Jump model) 
+```{r echo=FALSE, message=FALSE}
+knitr::kable(opioids_apc %>% filter(Outcome == "Opioid deaths"))
+```
+
+## Joinpoint Model Estimates
+### Estimates
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::kable(model_estimates %>% filter(Race == "White", 
+                                        Outcome == "Opioid deaths"))
+```
+
+### Summary
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::kable(model_summary %>% filter(Race == "White", 
+                                        Outcome == "Opioid deaths"))
+```

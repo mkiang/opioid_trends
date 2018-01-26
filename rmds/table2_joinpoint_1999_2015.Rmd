@@ -1,0 +1,137 @@
+---
+title: "Table 2. Joinpoint results by ICD-10 opioid category and race, 1999-2015"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+```{r imports}
+## Set everything up
+## Imports ----
+library(tidyverse)
+
+## Define the precision of the table
+num_decimals <- config::get()$num_decimals
+str_format <- paste0( "%0.", num_decimals, "f ", 
+                     "(%0.", num_decimals, "f, ", 
+                      "%0.", num_decimals, "f)%s")
+str_format_no_p <- paste0( "%0.", num_decimals, "f ", 
+                          "(%0.", num_decimals, "f, ", 
+                           "%0.", num_decimals, "f)")
+
+## Helper function ----
+import_jp_file <- function(filename) {
+    df <- readr::read_delim(filename, delim = ";", escape_double =  FALSE, 
+                            trim_ws = TRUE)
+    names(df) <- tolower(names(df))
+    names(df) <- gsub(" ", "",  names(df))
+    names(df) <- gsub(",", "_", names(df))
+    names(df) <- gsub("-", "",  names(df))
+    names(df) <- gsub("%", "",  names(df))
+    
+    return(df)
+}
+```
+
+```{r make_skeleton, message=FALSE, warning=FALSE, include=FALSE}
+## Make a skeleton dataframe to be filled in ----
+print_df <- data_frame(
+    r_names = c("heroin", "heroin_white", "heroin_black", 
+                "methadone", "methadone_white", "methadone_black", 
+                "natural", "natural_white", "natural_black",
+                "synthetic", "synth_white", "synth_black", 
+                "other_op", "other_op_white", "other_op_black")
+    )
+```
+
+```{r get_data, message=FALSE, warning=FALSE, include=FALSE}
+## Read in all the joinpoint results we are going to need
+## Just define the base file path so we don't need to do it over and over
+types_path   <- paste0("./joinpoint_analysis/", 
+                       "04_opioid_rates_icd10type/", 
+                       "04_opioid_rates_icd10type")
+
+## The joinpoint results we want are saved in different files so we have to 
+## import multiple files and subset to the elements we want.
+## By type AAPC
+types_aapc <- import_jp_file(paste0(types_path, ".aapc.txt"))
+types_data <- import_jp_file(paste0(types_path, ".data.txt"))
+types_apc  <- import_jp_file(paste0(types_path, ".apc.txt")) 
+```
+
+```{r pull_observed_values, message=FALSE, warning=FALSE, include=FALSE}
+## Pull observed values at 1999 and 2015 ----
+all_obs_vals <- types_data %>% 
+    filter(year %in% c(1999, 2015)) %>% 
+    mutate(obs_print = sprintf(str_format_no_p, 
+                               round(std_rate, num_decimals), 
+                               round(std_rate - 1.96 * standarderror, num_decimals), 
+                               round(std_rate + 1.96 * standarderror, num_decimals)), 
+           r_names = paste0(opioid_type, "_", race)) %>% 
+    select(r_names, obs_print, year) %>% 
+    spread(year, obs_print) %>% 
+    rename(obs_1999 = `1999`, 
+           obs_2015 = `2015`)
+```
+
+```{r pull_aapcs, message=FALSE, warning=FALSE, include=FALSE}
+## Pull AAPCs ----
+all_aapcs <- types_aapc %>% 
+    mutate(aapc_print = sprintf(str_format, 
+                                round(aapc, num_decimals), 
+                                round(aapcc.i.low, num_decimals), 
+                                round(aapcc.i.high, num_decimals), 
+                                ifelse(pvalue < .05, "*", "")), 
+           r_names = paste0(opioid_type, "_", race)) %>% 
+    select(r_names, aapc_print)
+```
+
+```{r pull_trends, message=FALSE, warning=FALSE, include=FALSE}
+## Pull out all the trends and reshape ----
+temp_apc <- types_apc %>% 
+    mutate(r_names = paste0(opioid_type, "_", race), 
+           trend_years_print = sprintf("%i-%i", segmentstart, segmentend), 
+           segment = as.integer(segment + 1), 
+           trends_apcs_print = sprintf(str_format, round(apc, num_decimals), 
+                                       round(apc95lcl, num_decimals), 
+                                       round(apc95ucl, num_decimals), 
+                                       ifelse(pvalue < .05, "*", ""))) %>% 
+    select(r_names, segment, trend_years_print, trends_apcs_print) 
+
+apcs <- temp_apc %>% 
+    select(-trend_years_print) %>% 
+    spread(segment, trends_apcs_print, sep = "_") %>% 
+    rename(apc_1 = segment_1, apc_2 = segment_2, apc_3 = segment_3, 
+           apc_4 = segment_4)
+
+seg_years <- temp_apc %>% 
+    select(-trends_apcs_print) %>% 
+    spread(segment, trend_years_print, sep = "_") %>% 
+    rename(years_1 = segment_1, years_2 = segment_2, years_3 = segment_3, 
+           years_4 = segment_4)
+
+segments_df <- apcs %>% 
+    left_join(seg_years, by = "r_names") %>% 
+    select(r_names, years_1, apc_1, years_2, apc_2, years_3, apc_3, 
+           years_4, apc_4)
+```
+
+```{r join_tables, message=FALSE, warning=FALSE, include=FALSE}
+## Join the tables ----
+print_df <- print_df %>% 
+    left_join(all_obs_vals) %>% 
+    left_join(all_aapcs) %>% 
+    left_join(segments_df) %>% 
+    mutate_all(coalesce, "")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::kable(print_df %>% 
+                 select(r_names, obs_1999, obs_2015, aapc_print, 
+                        ends_with("_1"), ends_with("_2"), ends_with("_3"))
+             )
+```
