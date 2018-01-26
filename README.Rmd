@@ -50,7 +50,7 @@ Each part has discrete steps and is described in detail below.
 
 ## Configuation file
 
-The `config.yml` file contains several global parameters for the analysis pipeline. Specifically:
+The `./config.yml` file contains several global parameters for the analysis pipeline in JSON format. Specifically:
 
 - `delete_zip_orig`: Allows the user to specify if the original MCOD files should be deleted (default: `true`) or saved (`false`) after it has been trimmed in Step 1. These files are typically 75 MB per year.
 - `delete_trimmed`: Allows the user to specify if the smaller MCOD files should be deleted (default: `true`) or saved (`false`) after it has been subsetted in the Step 1. These files are typically around 20 MB per year.
@@ -58,9 +58,8 @@ The `config.yml` file contains several global parameters for the analysis pipeli
 - `start_year` and `end_year`: Specify the start (default: `1979`) and end (default: `2015`) years of the analysis. Going earlier than 1979 will not work (due to different ICD codes), but as new data gets released, going later than 2016 *should* work.
 - `num_decimals`: The number of decimals that should be displayed for Tables 1 and 2
 - `num_decimals_supp`: The number of decimals that should be displayed for the Supplementary Tables
-- `raw_folder`: Specifies where the raw and trimmed MCOD files should be downloaded (default: `'./raw_data'`).
-- `sav_folder`: Specifies where the processed data files (i.e., working data) should be saved (default: `'./data'`).
-- `rmd_folder`: Specifies where `rmarkdown` files, and their output (i.e., tables), should be saved (default: `'./rmds'`).
+- `raw_folder`: Specifies where the raw and trimmed MCOD files should be downloaded (default: `./raw_data`).
+- `sav_folder`: Specifies where the processed data files (i.e., working data) should be saved (default: `./data`).
 - `output_folder`: Specifies where the tables and plots should be saved.
 - `proc_in_parallel`: Specifies if downloading and processing should be performed in parallel (`true`) or serially (default: `false`).
 
@@ -70,7 +69,7 @@ Typically, a user should not need to change any of these parameters; however, on
 
 For convenience, the `./01_rerun_step_1.R` file will run the following files for you in a single step. However, it is recommended you open and inspect each file individually.
 
-- **Step 1**: `./code/01_download_and_trim_raw_data.R`: Downloads data directly from the NBER website and "trims" the dataset by subsetting only to the columns we will use for analysis. In the `config.yml` file, the user can specify if the raw (untrimmed) data should be kept. The raw data take up approximately 2.9 GB of space (when compressed). The trimmed files take up approximately 900 MB when compressed. When running this process in parallel (that is, setting the `proc_in_parallel` option to `true` in the `config.yml` file), each process consumes 3.5–4 GB of RAM and the default number of processes is half of the available cores. Make sure your computer is capable of this before setting this option to `true`.
+- **Step 1**: `./code/01_download_and_trim_raw_data.R`: Downloads data directly from the NBER website and "trims" the dataset by subsetting only to the columns we will use for analysis. In the `./config.yml` file, the user can specify if the raw (untrimmed) data should be kept. The raw data take up approximately 2.9 GB of space (when compressed). The trimmed files take up approximately 900 MB when compressed. When running this process in parallel (that is, setting the `proc_in_parallel` option to `true` in the `./config.yml` file), each process consumes 3.5–4 GB of RAM and the default number of processes is half of the available cores. Make sure your computer is capable of this before setting this option to `true`.
     - Inputs: None
     - Outputs: 
         - `./raw_data/mortXXXX.dta.zip` or `./raw_data/mortXXXX.csv.zip` (37 files)
@@ -141,9 +140,11 @@ For convenience, the `./02_make_plots_and_tables.R` file will run the following 
 In addition, we provide code that will generate the materials in the supplement. See `./code/11_plot_efigure1.R` and `12_generate_supp_tables.R` for more.
 
 # Authors
-- [Monica Alexander](http://monicaalexander.com) ([GitHub](https://github.com/MJAlexander))
+- [Monica Alexander](http://monicaalexander.com) (![Github](http://i.imgur.com/9I6NRUm.png): [MJAlexander](https://github.com/MJAlexander)  |  
+![Twitter](http://i.imgur.com/wWzX9uB.png): [\@MonJAlexander](https://twitter.com/monjalexander))
 - [Magali Barbieri](http://www.demog.berkeley.edu/directories/profiles/barbieri.shtml)
-- [Mathew Kiang](https://mathewkiang.com) ([GitHub](https://github.com/mkiang))
+- [Mathew Kiang](https://mathewkiang.com) (![Github](http://i.imgur.com/9I6NRUm.png): [mkiang](https://github.com/mkiang)  |  
+![Twitter](http://i.imgur.com/wWzX9uB.png): [\@mathewkiang](https://twitter.com/mathewkiang))
 
 # Footnotes
 [^1]: We are investigating ways of reproducing the Joinpoint Regression Program using open-source statistical programs, and may update this code in the future.
