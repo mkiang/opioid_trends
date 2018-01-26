@@ -7,7 +7,8 @@ csv_folder <- config::get()$sav_folder
 ## Load data ----
 std_rates_long <- read_csv(sprintf("%s/age_standardized_rates_long.csv", 
                                    csv_folder))
-opioid_rr      <- read_csv('./data/opioid_rate_ratio.csv')
+opioid_rr      <- read_csv(sprintf('%s/opioid_rate_ratio.csv', 
+                                   csv_folder))
 
 ## For joinpoint analysis 1: pioid, drug, non-opioid drug ----
 jp1_data <- std_rates_long %>% 
