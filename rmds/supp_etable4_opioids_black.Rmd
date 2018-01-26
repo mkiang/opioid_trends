@@ -5,6 +5,7 @@ output: word_document
     
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = normalizePath("../"))
 ```
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
