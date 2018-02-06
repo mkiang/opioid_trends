@@ -11,7 +11,7 @@
 ## If you still prefer this method, just run the script below. The code is
 ## not guaranteed to work since some packages may have introduced backwards-
 ## incompatible changes.
-req_packages <- c("devtools", "tidyverse", "doParallel", 
+req_packages <- c("devtools", "tidyverse", "doParallel", "yaml", "digest", 
                   "foreach", "knitr", "config", "rmarkdown")
 
 for (p in req_packages) {
