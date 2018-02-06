@@ -16,7 +16,8 @@ req_packages <- c("devtools", "tidyverse", "doParallel", "yaml", "digest",
 
 for (p in req_packages) {
     if (!require(p, character.only = TRUE)) {
-        install.packages(p, dependencies = TRUE)
+        install.packages(p, dependencies = TRUE, 
+                         repos = "https://cloud.r-project.org")
     } 
     library(p, character.only = TRUE)
 }
