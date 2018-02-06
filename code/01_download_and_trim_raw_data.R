@@ -80,8 +80,8 @@ download_looper <- function(raw_folder, year) {
         
         ## Subset to columns we want
         temp_df <- temp_df %>% 
-            dplyr::select(dplyr:one_of(c("year", "race", "hspanicr", 
-                                         "ager27", "restatus", "ucod")),
+            dplyr::select(dplyr::one_of(c("year", "race", "hspanicr", 
+                                          "ager27", "restatus", "ucod")),
                           dplyr::starts_with("record_"), 
                           dplyr::starts_with("rnifla"))
         
