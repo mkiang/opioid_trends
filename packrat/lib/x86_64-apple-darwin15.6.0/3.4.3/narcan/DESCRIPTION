@@ -1,0 +1,29 @@
+Package: narcan
+Type: Package
+Title: Helper functions for working with multiple cause of death data
+Version: 0.1.0
+Authors@R: as.person(c( "Mathew Kiang <mathew.kiang@gmail.com> [aut,
+    cre]", "Monica Alexander <monicaalexander@berkeley.edu> [aut]" ))
+Description: Multiple cause of death (MCOD) data are required for
+    calculating opioid deaths (which are defined by both an underlying
+    and contributory cause). This package is designed to help with some
+    of the downloading, munging, and common operations of MCOD data --
+    especially in relation to opioid deaths.
+URL: http://github.com/mkiang/narcan
+BugReports: http://github.com/mkiang/narcan/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr, haven, readr, rlang, stringr, tibble, tidyr
+Depends: R (>= 2.10)
+RoxygenNote: 6.0.1.9000
+GithubRepo: narcan
+GithubUsername: mkiang
+GithubRef: b975d72ec98ffa7aa8e73954ac130403a34db870
+GithubSHA1: b975d72ec98ffa7aa8e73954ac130403a34db870
+Author: Mathew Kiang [aut, cre], Monica Alexander [aut]
+Maintainer: Mathew Kiang <mathew.kiang@gmail.com>
+Built: R 3.4.3; ; 2018-01-26 20:18:22 UTC; unix
+InstallAgent: packrat 0.4.8.1
+InstallSource: github
+Hash: cbc36243af89c675b8d4d0317d8af319

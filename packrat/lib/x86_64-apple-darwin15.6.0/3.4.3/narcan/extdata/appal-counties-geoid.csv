@@ -1,0 +1,421 @@
+state_abb,state_full,county,state_county,state_fips,county_fips,geoid
+KY,Kentucky,Adair,"Adair County, Kentucky",21,001,21001
+OH,Ohio,Adams,"Adams County, Ohio",39,001,39001
+MS,Mississippi,Alcorn,"Alcorn County, Mississippi",28,003,28003
+NC,North Carolina,Alexander,"Alexander County, North Carolina",37,003,37003
+MD,Maryland,Allegany,"Allegany County, Maryland",24,001,24001
+NY,New York,Allegany,"Allegany County, New York",36,003,36003
+NC,North Carolina,Alleghany,"Alleghany County, North Carolina",37,005,37005
+VA,Virginia,Alleghany,"Alleghany County, Virginia",51,005,51005
+PA,Pennsylvania,Allegheny,"Allegheny County, Pennsylvania",42,003,42003
+SC,South Carolina,Anderson,"Anderson County, South Carolina",45,007,45007
+TN,Tennessee,Anderson,"Anderson County, Tennessee",47,001,47001
+PA,Pennsylvania,Armstrong,"Armstrong County, Pennsylvania",42,005,42005
+NC,North Carolina,Ashe,"Ashe County, North Carolina",37,009,37009
+OH,Ohio,Ashtabula,"Ashtabula County, Ohio",39,007,39007
+OH,Ohio,Athens,"Athens County, Ohio",39,009,39009
+NC,North Carolina,Avery,"Avery County, North Carolina",37,011,37011
+GA,Georgia,Banks,"Banks County, Georgia",13,011,13011
+WV,West Virginia,Barbour,"Barbour County, West Virginia",54,001,54001
+GA,Georgia,Barrow,"Barrow County, Georgia",13,013,13013
+GA,Georgia,Bartow,"Bartow County, Georgia",13,015,13015
+KY,Kentucky,Bath,"Bath County, Kentucky",21,011,21011
+VA,Virginia,Bath,"Bath County, Virginia",51,017,51017
+PA,Pennsylvania,Beaver,"Beaver County, Pennsylvania",42,007,42007
+PA,Pennsylvania,Bedford,"Bedford County, Pennsylvania",42,009,42009
+KY,Kentucky,Bell,"Bell County, Kentucky",21,013,21013
+OH,Ohio,Belmont,"Belmont County, Ohio",39,013,39013
+MS,Mississippi,Benton,"Benton County, Mississippi",28,009,28009
+WV,West Virginia,Berkeley,"Berkeley County, West Virginia",54,003,54003
+AL,Alabama,Bibb,"Bibb County, Alabama",01,007,01007
+PA,Pennsylvania,Blair,"Blair County, Pennsylvania",42,013,42013
+VA,Virginia,Bland,"Bland County, Virginia",51,021,51021
+TN,Tennessee,Bledsoe,"Bledsoe County, Tennessee",47,007,47007
+AL,Alabama,Blount,"Blount County, Alabama",01,009,01009
+TN,Tennessee,Blount,"Blount County, Tennessee",47,009,47009
+WV,West Virginia,Boone,"Boone County, West Virginia",54,005,54005
+VA,Virginia,Botetourt,"Botetourt County, Virginia",51,023,51023
+KY,Kentucky,Boyd,"Boyd County, Kentucky",21,019,21019
+PA,Pennsylvania,Bradford,"Bradford County, Pennsylvania",42,015,42015
+TN,Tennessee,Bradley,"Bradley County, Tennessee",47,011,47011
+WV,West Virginia,Braxton,"Braxton County, West Virginia",54,007,54007
+KY,Kentucky,Breathitt,"Breathitt County, Kentucky",21,025,21025
+WV,West Virginia,Brooke,"Brooke County, West Virginia",54,009,54009
+NY,New York,Broome,"Broome County, New York",36,007,36007
+OH,Ohio,Brown,"Brown County, Ohio",39,015,39015
+VA,Virginia,Buchanan,"Buchanan County, Virginia",51,027,51027
+NC,North Carolina,Buncombe,"Buncombe County, North Carolina",37,021,37021
+NC,North Carolina,Burke,"Burke County, North Carolina",37,023,37023
+PA,Pennsylvania,Butler,"Butler County, Pennsylvania",42,019,42019
+WV,West Virginia,Cabell,"Cabell County, West Virginia",54,011,54011
+NC,North Carolina,Caldwell,"Caldwell County, North Carolina",37,027,37027
+AL,Alabama,Calhoun,"Calhoun County, Alabama",01,015,01015
+MS,Mississippi,Calhoun,"Calhoun County, Mississippi",28,013,28013
+WV,West Virginia,Calhoun,"Calhoun County, West Virginia",54,013,54013
+PA,Pennsylvania,Cambria,"Cambria County, Pennsylvania",42,021,42021
+PA,Pennsylvania,Cameron,"Cameron County, Pennsylvania",42,023,42023
+TN,Tennessee,Campbell,"Campbell County, Tennessee",47,013,47013
+TN,Tennessee,Cannon,"Cannon County, Tennessee",47,015,47015
+PA,Pennsylvania,Carbon,"Carbon County, Pennsylvania",42,025,42025
+GA,Georgia,Carroll,"Carroll County, Georgia",13,045,13045
+OH,Ohio,Carroll,"Carroll County, Ohio",39,019,39019
+VA,Virginia,Carroll,"Carroll County, Virginia",51,035,51035
+KY,Kentucky,Carter,"Carter County, Kentucky",21,043,21043
+TN,Tennessee,Carter,"Carter County, Tennessee",47,019,47019
+KY,Kentucky,Casey,"Casey County, Kentucky",21,045,21045
+GA,Georgia,Catoosa,"Catoosa County, Georgia",13,047,13047
+NY,New York,Cattaraugus,"Cattaraugus County, New York",36,009,36009
+PA,Pennsylvania,Centre,"Centre County, Pennsylvania",42,027,42027
+AL,Alabama,Chambers,"Chambers County, Alabama",01,017,01017
+GA,Georgia,Chattooga,"Chattooga County, Georgia",13,055,13055
+NY,New York,Chautauqua,"Chautauqua County, New York",36,013,36013
+NY,New York,Chemung,"Chemung County, New York",36,015,36015
+NY,New York,Chenango,"Chenango County, New York",36,017,36017
+AL,Alabama,Cherokee,"Cherokee County, Alabama",01,019,01019
+GA,Georgia,Cherokee,"Cherokee County, Georgia",13,057,13057
+NC,North Carolina,Cherokee,"Cherokee County, North Carolina",37,039,37039
+SC,South Carolina,Cherokee,"Cherokee County, South Carolina",45,021,45021
+MS,Mississippi,Chickasaw,"Chickasaw County, Mississippi",28,017,28017
+AL,Alabama,Chilton,"Chilton County, Alabama",01,021,01021
+MS,Mississippi,Choctaw,"Choctaw County, Mississippi",28,019,28019
+TN,Tennessee,Claiborne,"Claiborne County, Tennessee",47,025,47025
+PA,Pennsylvania,Clarion,"Clarion County, Pennsylvania",42,031,42031
+KY,Kentucky,Clark,"Clark County, Kentucky",21,049,21049
+AL,Alabama,Clay,"Clay County, Alabama",01,027,01027
+KY,Kentucky,Clay,"Clay County, Kentucky",21,051,21051
+MS,Mississippi,Clay,"Clay County, Mississippi",28,025,28025
+NC,North Carolina,Clay,"Clay County, North Carolina",37,043,37043
+TN,Tennessee,Clay,"Clay County, Tennessee",47,027,47027
+WV,West Virginia,Clay,"Clay County, West Virginia",54,015,54015
+PA,Pennsylvania,Clearfield,"Clearfield County, Pennsylvania",42,033,42033
+AL,Alabama,Cleburne,"Cleburne County, Alabama",01,029,01029
+OH,Ohio,Clermont,"Clermont County, Ohio",39,025,39025
+KY,Kentucky,Clinton,"Clinton County, Kentucky",21,053,21053
+PA,Pennsylvania,Clinton,"Clinton County, Pennsylvania",42,035,42035
+TN,Tennessee,Cocke,"Cocke County, Tennessee",47,029,47029
+TN,Tennessee,Coffee,"Coffee County, Tennessee",47,031,47031
+AL,Alabama,Colbert,"Colbert County, Alabama",01,033,01033
+PA,Pennsylvania,Columbia,"Columbia County, Pennsylvania",42,037,42037
+OH,Ohio,Columbiana,"Columbiana County, Ohio",39,029,39029
+AL,Alabama,Coosa,"Coosa County, Alabama",01,037,01037
+NY,New York,Cortland,"Cortland County, New York",36,023,36023
+OH,Ohio,Coshocton,"Coshocton County, Ohio",39,031,39031
+VA,Virginia,Craig,"Craig County, Virginia",51,045,51045
+PA,Pennsylvania,Crawford,"Crawford County, Pennsylvania",42,039,42039
+AL,Alabama,Cullman,"Cullman County, Alabama",01,043,01043
+KY,Kentucky,Cumberland,"Cumberland County, Kentucky",21,057,21057
+TN,Tennessee,Cumberland,"Cumberland County, Tennessee",47,035,47035
+GA,Georgia,Dade,"Dade County, Georgia",13,083,13083
+NC,North Carolina,Davie,"Davie County, North Carolina",37,059,37059
+GA,Georgia,Dawson,"Dawson County, Georgia",13,085,13085
+AL,Alabama,De Kalb,"DeKalb County, Alabama",01,049,01049
+TN,Tennessee,De Kalb,"DeKalb County, Tennessee",47,041,47041
+NY,New York,Delaware,"Delaware County, New York",36,025,36025
+VA,Virginia,Dickenson,"Dickenson County, Virginia",51,051,51051
+WV,West Virginia,Doddridge,"Doddridge County, West Virginia",54,017,54017
+GA,Georgia,Douglas,"Douglas County, Georgia",13,097,13097
+KY,Kentucky,Edmonson,"Edmonson County, Kentucky",21,061,21061
+GA,Georgia,Elbert,"Elbert County, Georgia",13,105,13105
+PA,Pennsylvania,Elk,"Elk County, Pennsylvania",42,047,42047
+KY,Kentucky,Elliott,"Elliott County, Kentucky",21,063,21063
+AL,Alabama,Elmore,"Elmore County, Alabama",01,051,01051
+PA,Pennsylvania,Erie,"Erie County, Pennsylvania",42,049,42049
+KY,Kentucky,Estill,"Estill County, Kentucky",21,065,21065
+AL,Alabama,Etowah,"Etowah County, Alabama",01,055,01055
+GA,Georgia,Fannin,"Fannin County, Georgia",13,111,13111
+AL,Alabama,Fayette,"Fayette County, Alabama",01,057,01057
+PA,Pennsylvania,Fayette,"Fayette County, Pennsylvania",42,051,42051
+WV,West Virginia,Fayette,"Fayette County, West Virginia",54,019,54019
+TN,Tennessee,Fentress,"Fentress County, Tennessee",47,049,47049
+KY,Kentucky,Fleming,"Fleming County, Kentucky",21,069,21069
+GA,Georgia,Floyd,"Floyd County, Georgia",13,115,13115
+KY,Kentucky,Floyd,"Floyd County, Kentucky",21,071,21071
+VA,Virginia,Floyd,"Floyd County, Virginia",51,063,51063
+PA,Pennsylvania,Forest,"Forest County, Pennsylvania",42,053,42053
+GA,Georgia,Forsyth,"Forsyth County, Georgia",13,117,13117
+NC,North Carolina,Forsyth,"Forsyth County, North Carolina",37,067,37067
+AL,Alabama,Franklin,"Franklin County, Alabama",01,059,01059
+GA,Georgia,Franklin,"Franklin County, Georgia",13,119,13119
+TN,Tennessee,Franklin,"Franklin County, Tennessee",47,051,47051
+PA,Pennsylvania,Fulton,"Fulton County, Pennsylvania",42,057,42057
+OH,Ohio,Gallia,"Gallia County, Ohio",39,053,39053
+KY,Kentucky,Garrard,"Garrard County, Kentucky",21,079,21079
+MD,Maryland,Garrett,"Garrett County, Maryland",24,023,24023
+VA,Virginia,Giles,"Giles County, Virginia",51,071,51071
+GA,Georgia,Gilmer,"Gilmer County, Georgia",13,123,13123
+WV,West Virginia,Gilmer,"Gilmer County, West Virginia",54,021,54021
+GA,Georgia,Gordon,"Gordon County, Georgia",13,129,13129
+NC,North Carolina,Graham,"Graham County, North Carolina",37,075,37075
+TN,Tennessee,Grainger,"Grainger County, Tennessee",47,057,47057
+WV,West Virginia,Grant,"Grant County, West Virginia",54,023,54023
+VA,Virginia,Grayson,"Grayson County, Virginia",51,077,51077
+KY,Kentucky,Green,"Green County, Kentucky",21,087,21087
+WV,West Virginia,Greenbrier,"Greenbrier County, West Virginia",54,025,54025
+PA,Pennsylvania,Greene,"Greene County, Pennsylvania",42,059,42059
+TN,Tennessee,Greene,"Greene County, Tennessee",47,059,47059
+KY,Kentucky,Greenup,"Greenup County, Kentucky",21,089,21089
+SC,South Carolina,Greenville,"Greenville County, South Carolina",45,045,45045
+TN,Tennessee,Grundy,"Grundy County, Tennessee",47,061,47061
+OH,Ohio,Guernsey,"Guernsey County, Ohio",39,059,39059
+GA,Georgia,Gwinnett,"Gwinnett County, Georgia",13,135,13135
+GA,Georgia,Habersham,"Habersham County, Georgia",13,137,13137
+AL,Alabama,Hale,"Hale County, Alabama",01,065,01065
+GA,Georgia,Hall,"Hall County, Georgia",13,139,13139
+TN,Tennessee,Hamblen,"Hamblen County, Tennessee",47,063,47063
+TN,Tennessee,Hamilton,"Hamilton County, Tennessee",47,065,47065
+WV,West Virginia,Hampshire,"Hampshire County, West Virginia",54,027,54027
+TN,Tennessee,Hancock,"Hancock County, Tennessee",47,067,47067
+WV,West Virginia,Hancock,"Hancock County, West Virginia",54,029,54029
+GA,Georgia,Haralson,"Haralson County, Georgia",13,143,13143
+WV,West Virginia,Hardy,"Hardy County, West Virginia",54,031,54031
+KY,Kentucky,Harlan,"Harlan County, Kentucky",21,095,21095
+OH,Ohio,Harrison,"Harrison County, Ohio",39,067,39067
+WV,West Virginia,Harrison,"Harrison County, West Virginia",54,033,54033
+GA,Georgia,Hart,"Hart County, Georgia",13,147,13147
+KY,Kentucky,Hart,"Hart County, Kentucky",21,099,21099
+TN,Tennessee,Hawkins,"Hawkins County, Tennessee",47,073,47073
+NC,North Carolina,Haywood,"Haywood County, North Carolina",37,087,37087
+GA,Georgia,Heard,"Heard County, Georgia",13,149,13149
+NC,North Carolina,Henderson,"Henderson County, North Carolina",37,089,37089
+VA,Virginia,Henry,"Henry County, Virginia",51,089,51089
+OH,Ohio,Highland,"Highland County, Ohio",39,071,39071
+VA,Virginia,Highland,"Highland County, Virginia",51,091,51091
+OH,Ohio,Hocking,"Hocking County, Ohio",39,073,39073
+OH,Ohio,Holmes,"Holmes County, Ohio",39,075,39075
+PA,Pennsylvania,Huntingdon,"Huntingdon County, Pennsylvania",42,061,42061
+PA,Pennsylvania,Indiana,"Indiana County, Pennsylvania",42,063,42063
+MS,Mississippi,Itawamba,"Itawamba County, Mississippi",28,057,28057
+AL,Alabama,Jackson,"Jackson County, Alabama",01,071,01071
+GA,Georgia,Jackson,"Jackson County, Georgia",13,157,13157
+KY,Kentucky,Jackson,"Jackson County, Kentucky",21,109,21109
+NC,North Carolina,Jackson,"Jackson County, North Carolina",37,099,37099
+OH,Ohio,Jackson,"Jackson County, Ohio",39,079,39079
+TN,Tennessee,Jackson,"Jackson County, Tennessee",47,087,47087
+WV,West Virginia,Jackson,"Jackson County, West Virginia",54,035,54035
+AL,Alabama,Jefferson,"Jefferson County, Alabama",01,073,01073
+OH,Ohio,Jefferson,"Jefferson County, Ohio",39,081,39081
+PA,Pennsylvania,Jefferson,"Jefferson County, Pennsylvania",42,065,42065
+TN,Tennessee,Jefferson,"Jefferson County, Tennessee",47,089,47089
+WV,West Virginia,Jefferson,"Jefferson County, West Virginia",54,037,54037
+KY,Kentucky,Johnson,"Johnson County, Kentucky",21,115,21115
+TN,Tennessee,Johnson,"Johnson County, Tennessee",47,091,47091
+PA,Pennsylvania,Juniata,"Juniata County, Pennsylvania",42,067,42067
+WV,West Virginia,Kanawha,"Kanawha County, West Virginia",54,039,54039
+MS,Mississippi,Kemper,"Kemper County, Mississippi",28,069,28069
+KY,Kentucky,Knott,"Knott County, Kentucky",21,119,21119
+KY,Kentucky,Knox,"Knox County, Kentucky",21,121,21121
+TN,Tennessee,Knox,"Knox County, Tennessee",47,093,47093
+PA,Pennsylvania,Lackawanna,"Lackawanna County, Pennsylvania",42,069,42069
+AL,Alabama,Lamar,"Lamar County, Alabama",01,075,01075
+AL,Alabama,Lauderdale,"Lauderdale County, Alabama",01,077,01077
+KY,Kentucky,Laurel,"Laurel County, Kentucky",21,125,21125
+AL,Alabama,Lawrence,"Lawrence County, Alabama",01,079,01079
+KY,Kentucky,Lawrence,"Lawrence County, Kentucky",21,127,21127
+OH,Ohio,Lawrence,"Lawrence County, Ohio",39,087,39087
+PA,Pennsylvania,Lawrence,"Lawrence County, Pennsylvania",42,073,42073
+TN,Tennessee,Lawrence,"Lawrence County, Tennessee",47,099,47099
+KY,Kentucky,Lee,"Lee County, Kentucky",21,129,21129
+MS,Mississippi,Lee,"Lee County, Mississippi",28,081,28081
+VA,Virginia,Lee,"Lee County, Virginia",51,105,51105
+KY,Kentucky,Leslie,"Leslie County, Kentucky",21,131,21131
+KY,Kentucky,Letcher,"Letcher County, Kentucky",21,133,21133
+KY,Kentucky,Lewis,"Lewis County, Kentucky",21,135,21135
+TN,Tennessee,Lewis,"Lewis County, Tennessee",47,101,47101
+WV,West Virginia,Lewis,"Lewis County, West Virginia",54,041,54041
+AL,Alabama,Limestone,"Limestone County, Alabama",01,083,01083
+KY,Kentucky,Lincoln,"Lincoln County, Kentucky",21,137,21137
+WV,West Virginia,Lincoln,"Lincoln County, West Virginia",54,043,54043
+WV,West Virginia,Logan,"Logan County, West Virginia",54,045,54045
+TN,Tennessee,Loudon,"Loudon County, Tennessee",47,105,47105
+MS,Mississippi,Lowndes,"Lowndes County, Mississippi",28,087,28087
+GA,Georgia,Lumpkin,"Lumpkin County, Georgia",13,187,13187
+PA,Pennsylvania,Luzerne,"Luzerne County, Pennsylvania",42,079,42079
+PA,Pennsylvania,Lycoming,"Lycoming County, Pennsylvania",42,081,42081
+AL,Alabama,Macon,"Macon County, Alabama",01,087,01087
+NC,North Carolina,Macon,"Macon County, North Carolina",37,113,37113
+TN,Tennessee,Macon,"Macon County, Tennessee",47,111,47111
+AL,Alabama,Madison,"Madison County, Alabama",01,089,01089
+GA,Georgia,Madison,"Madison County, Georgia",13,195,13195
+KY,Kentucky,Madison,"Madison County, Kentucky",21,151,21151
+NC,North Carolina,Madison,"Madison County, North Carolina",37,115,37115
+KY,Kentucky,Magoffin,"Magoffin County, Kentucky",21,153,21153
+OH,Ohio,Mahoning,"Mahoning County, Ohio",39,099,39099
+AL,Alabama,Marion,"Marion County, Alabama",01,093,01093
+TN,Tennessee,Marion,"Marion County, Tennessee",47,115,47115
+WV,West Virginia,Marion,"Marion County, West Virginia",54,049,54049
+AL,Alabama,Marshall,"Marshall County, Alabama",01,095,01095
+MS,Mississippi,Marshall,"Marshall County, Mississippi",28,093,28093
+WV,West Virginia,Marshall,"Marshall County, West Virginia",54,051,54051
+KY,Kentucky,Martin,"Martin County, Kentucky",21,159,21159
+WV,West Virginia,Mason,"Mason County, West Virginia",54,053,54053
+KY,Kentucky,McCreary,"McCreary County, Kentucky",21,147,21147
+NC,North Carolina,McDowell,"McDowell County, North Carolina",37,111,37111
+WV,West Virginia,McDowell,"McDowell County, West Virginia",54,047,54047
+PA,Pennsylvania,McKean,"McKean County, Pennsylvania",42,083,42083
+TN,Tennessee,McMinn,"McMinn County, Tennessee",47,107,47107
+OH,Ohio,Meigs,"Meigs County, Ohio",39,105,39105
+TN,Tennessee,Meigs,"Meigs County, Tennessee",47,121,47121
+KY,Kentucky,Menifee,"Menifee County, Kentucky",21,165,21165
+PA,Pennsylvania,Mercer,"Mercer County, Pennsylvania",42,085,42085
+WV,West Virginia,Mercer,"Mercer County, West Virginia",54,055,54055
+KY,Kentucky,Metcalfe,"Metcalfe County, Kentucky",21,169,21169
+PA,Pennsylvania,Mifflin,"Mifflin County, Pennsylvania",42,087,42087
+WV,West Virginia,Mineral,"Mineral County, West Virginia",54,057,54057
+WV,West Virginia,Mingo,"Mingo County, West Virginia",54,059,54059
+NC,North Carolina,Mitchell,"Mitchell County, North Carolina",37,121,37121
+WV,West Virginia,Monongalia,"Monongalia County, West Virginia",54,061,54061
+KY,Kentucky,Monroe,"Monroe County, Kentucky",21,171,21171
+MS,Mississippi,Monroe,"Monroe County, Mississippi",28,095,28095
+OH,Ohio,Monroe,"Monroe County, Ohio",39,111,39111
+PA,Pennsylvania,Monroe,"Monroe County, Pennsylvania",42,089,42089
+TN,Tennessee,Monroe,"Monroe County, Tennessee",47,123,47123
+WV,West Virginia,Monroe,"Monroe County, West Virginia",54,063,54063
+KY,Kentucky,Montgomery,"Montgomery County, Kentucky",21,173,21173
+MS,Mississippi,Montgomery,"Montgomery County, Mississippi",28,097,28097
+VA,Virginia,Montgomery,"Montgomery County, Virginia",51,121,51121
+PA,Pennsylvania,Montour,"Montour County, Pennsylvania",42,093,42093
+AL,Alabama,Morgan,"Morgan County, Alabama",01,103,01103
+KY,Kentucky,Morgan,"Morgan County, Kentucky",21,175,21175
+OH,Ohio,Morgan,"Morgan County, Ohio",39,115,39115
+TN,Tennessee,Morgan,"Morgan County, Tennessee",47,129,47129
+WV,West Virginia,Morgan,"Morgan County, West Virginia",54,065,54065
+GA,Georgia,Murray,"Murray County, Georgia",13,213,13213
+OH,Ohio,Muskingum,"Muskingum County, Ohio",39,119,39119
+KY,Kentucky,Nicholas,"Nicholas County, Kentucky",21,181,21181
+WV,West Virginia,Nicholas,"Nicholas County, West Virginia",54,067,54067
+OH,Ohio,Noble,"Noble County, Ohio",39,121,39121
+PA,Pennsylvania,Northumberland,"Northumberland County, Pennsylvania",42,097,42097
+MS,Mississippi,Noxubee,"Noxubee County, Mississippi",28,103,28103
+SC,South Carolina,Oconee,"Oconee County, South Carolina",45,073,45073
+WV,West Virginia,Ohio,"Ohio County, West Virginia",54,069,54069
+MS,Mississippi,Oktibbeha,"Oktibbeha County, Mississippi",28,105,28105
+NY,New York,Otsego,"Otsego County, New York",36,077,36077
+TN,Tennessee,Overton,"Overton County, Tennessee",47,133,47133
+KY,Kentucky,Owsley,"Owsley County, Kentucky",21,189,21189
+MS,Mississippi,Panola,"Panola County, Mississippi",28,107,28107
+VA,Virginia,Patrick,"Patrick County, Virginia",51,141,51141
+GA,Georgia,Paulding,"Paulding County, Georgia",13,223,13223
+WV,West Virginia,Pendleton,"Pendleton County, West Virginia",54,071,54071
+KY,Kentucky,Perry,"Perry County, Kentucky",21,193,21193
+OH,Ohio,Perry,"Perry County, Ohio",39,127,39127
+PA,Pennsylvania,Perry,"Perry County, Pennsylvania",42,099,42099
+AL,Alabama,Pickens,"Pickens County, Alabama",01,107,01107
+GA,Georgia,Pickens,"Pickens County, Georgia",13,227,13227
+SC,South Carolina,Pickens,"Pickens County, South Carolina",45,077,45077
+TN,Tennessee,Pickett,"Pickett County, Tennessee",47,137,47137
+KY,Kentucky,Pike,"Pike County, Kentucky",21,195,21195
+OH,Ohio,Pike,"Pike County, Ohio",39,131,39131
+PA,Pennsylvania,Pike,"Pike County, Pennsylvania",42,103,42103
+WV,West Virginia,Pleasants,"Pleasants County, West Virginia",54,073,54073
+WV,West Virginia,Pocahontas,"Pocahontas County, West Virginia",54,075,54075
+GA,Georgia,Polk,"Polk County, Georgia",13,233,13233
+NC,North Carolina,Polk,"Polk County, North Carolina",37,149,37149
+TN,Tennessee,Polk,"Polk County, Tennessee",47,139,47139
+MS,Mississippi,Pontotoc,"Pontotoc County, Mississippi",28,115,28115
+PA,Pennsylvania,Potter,"Potter County, Pennsylvania",42,105,42105
+KY,Kentucky,Powell,"Powell County, Kentucky",21,197,21197
+MS,Mississippi,Prentiss,"Prentiss County, Mississippi",28,117,28117
+WV,West Virginia,Preston,"Preston County, West Virginia",54,077,54077
+KY,Kentucky,Pulaski,"Pulaski County, Kentucky",21,199,21199
+VA,Virginia,Pulaski,"Pulaski County, Virginia",51,155,51155
+TN,Tennessee,Putnam,"Putnam County, Tennessee",47,141,47141
+WV,West Virginia,Putnam,"Putnam County, West Virginia",54,079,54079
+GA,Georgia,Rabun,"Rabun County, Georgia",13,241,13241
+WV,West Virginia,Raleigh,"Raleigh County, West Virginia",54,081,54081
+AL,Alabama,Randolph,"Randolph County, Alabama",01,111,01111
+WV,West Virginia,Randolph,"Randolph County, West Virginia",54,083,54083
+TN,Tennessee,Rhea,"Rhea County, Tennessee",47,143,47143
+WV,West Virginia,Ritchie,"Ritchie County, West Virginia",54,085,54085
+TN,Tennessee,Roane,"Roane County, Tennessee",47,145,47145
+WV,West Virginia,Roane,"Roane County, West Virginia",54,087,54087
+KY,Kentucky,Robertson,"Robertson County, Kentucky",21,201,21201
+VA,Virginia,Rockbridge,"Rockbridge County, Virginia",51,163,51163
+KY,Kentucky,Rockcastle,"Rockcastle County, Kentucky",21,203,21203
+OH,Ohio,Ross,"Ross County, Ohio",39,141,39141
+KY,Kentucky,Rowan,"Rowan County, Kentucky",21,205,21205
+KY,Kentucky,Russell,"Russell County, Kentucky",21,207,21207
+VA,Virginia,Russell,"Russell County, Virginia",51,167,51167
+NC,North Carolina,Rutherford,"Rutherford County, North Carolina",37,161,37161
+NY,New York,Schoharie,"Schoharie County, New York",36,095,36095
+NY,New York,Schuyler,"Schuyler County, New York",36,097,36097
+PA,Pennsylvania,Schuylkill,"Schuylkill County, Pennsylvania",42,107,42107
+OH,Ohio,Scioto,"Scioto County, Ohio",39,145,39145
+TN,Tennessee,Scott,"Scott County, Tennessee",47,151,47151
+VA,Virginia,Scott,"Scott County, Virginia",51,169,51169
+TN,Tennessee,Sequatchie,"Sequatchie County, Tennessee",47,153,47153
+TN,Tennessee,Sevier,"Sevier County, Tennessee",47,155,47155
+AL,Alabama,Shelby,"Shelby County, Alabama",01,117,01117
+TN,Tennessee,Smith,"Smith County, Tennessee",47,159,47159
+VA,Virginia,Smyth,"Smyth County, Virginia",51,173,51173
+PA,Pennsylvania,Snyder,"Snyder County, Pennsylvania",42,109,42109
+PA,Pennsylvania,Somerset,"Somerset County, Pennsylvania",42,111,42111
+SC,South Carolina,Spartanburg ,"Spartanburg County, South Carolina",45,083,45083
+AL,Alabama,St. Clair,"St. Clair County, Alabama",01,115,01115
+GA,Georgia,Stephens,"Stephens County, Georgia",13,257,13257
+NY,New York,Steuben,"Steuben County, New York",36,101,36101
+NC,North Carolina,Stokes,"Stokes County, North Carolina",37,169,37169
+PA,Pennsylvania,Sullivan,"Sullivan County, Pennsylvania",42,113,42113
+TN,Tennessee,Sullivan,"Sullivan County, Tennessee",47,163,47163
+WV,West Virginia,Summers,"Summers County, West Virginia",54,089,54089
+NC,North Carolina,Surry,"Surry County, North Carolina",37,171,37171
+PA,Pennsylvania,Susquehanna,"Susquehanna County, Pennsylvania",42,115,42115
+NC,North Carolina,Swain,"Swain County, North Carolina",37,173,37173
+AL,Alabama,Talladega,"Talladega County, Alabama",01,121,01121
+AL,Alabama,Tallapoosa,"Tallapoosa County, Alabama",01,123,01123
+WV,West Virginia,Taylor,"Taylor County, West Virginia",54,091,54091
+VA,Virginia,Tazewell,"Tazewell County, Virginia",51,185,51185
+NY,New York,Tioga,"Tioga County, New York",36,107,36107
+PA,Pennsylvania,Tioga,"Tioga County, Pennsylvania",42,117,42117
+MS,Mississippi,Tippah,"Tippah County, Mississippi",28,139,28139
+MS,Mississippi,Tishomingo,"Tishomingo County, Mississippi",28,141,28141
+NY,New York,Tompkins ,"Tompkins County, New York",36,109,36109
+GA,Georgia,Towns,"Towns County, Georgia",13,281,13281
+NC,North Carolina,Transylvania,"Transylvania County, North Carolina",37,175,37175
+OH,Ohio,Trumbull,"Trumbull County, Ohio",39,155,39155
+WV,West Virginia,Tucker,"Tucker County, West Virginia",54,093,54093
+AL,Alabama,Tuscaloosa,"Tuscaloosa County, Alabama",01,125,01125
+OH,Ohio,Tuscarawas,"Tuscarawas County, Ohio",39,157,39157
+WV,West Virginia,Tyler,"Tyler County, West Virginia",54,095,54095
+TN,Tennessee,Unicoi,"Unicoi County, Tennessee",47,171,47171
+GA,Georgia,Union,"Union County, Georgia",13,291,13291
+MS,Mississippi,Union,"Union County, Mississippi",28,145,28145
+PA,Pennsylvania,Union,"Union County, Pennsylvania",42,119,42119
+TN,Tennessee,Union,"Union County, Tennessee",47,173,47173
+WV,West Virginia,Upshur,"Upshur County, West Virginia",54,097,54097
+TN,Tennessee,Van Buren,"Van Buren County, Tennessee",47,175,47175
+PA,Pennsylvania,Venango,"Venango County, Pennsylvania",42,121,42121
+OH,Ohio,Vinton,"Vinton County, Ohio",39,163,39163
+AL,Alabama,Walker,"Walker County, Alabama",01,127,01127
+GA,Georgia,Walker,"Walker County, Georgia",13,295,13295
+PA,Pennsylvania,Warren,"Warren County, Pennsylvania",42,123,42123
+TN,Tennessee,Warren,"Warren County, Tennessee",47,177,47177
+MD,Maryland,Washington ,"Washington County, Maryland",24,043,24043
+OH,Ohio,Washington ,"Washington County, Ohio",39,167,39167
+PA,Pennsylvania,Washington,"Washington County, Pennsylvania",42,125,42125
+TN,Tennessee,Washington,"Washington County, Tennessee",47,179,47179
+VA,Virginia,Washington,"Washington County, Virginia",51,191,51191
+NC,North Carolina,Watauga,"Watauga County, North Carolina",37,189,37189
+KY,Kentucky,Wayne,"Wayne County, Kentucky",21,231,21231
+PA,Pennsylvania,Wayne,"Wayne County, Pennsylvania",42,127,42127
+WV,West Virginia,Wayne,"Wayne County, West Virginia",54,099,54099
+MS,Mississippi,Webster,"Webster County, Mississippi",28,155,28155
+WV,West Virginia,Webster,"Webster County, West Virginia",54,101,54101
+PA,Pennsylvania,Westmoreland,"Westmoreland County, Pennsylvania",42,129,42129
+WV,West Virginia,Wetzel,"Wetzel County, West Virginia",54,103,54103
+TN,Tennessee,White ,"White County, Tennessee",47,185,47185
+GA,Georgia,White,"White County, Georgia",13,311,13311
+GA,Georgia,Whitfield,"Whitfield County, Georgia",13,313,13313
+KY,Kentucky,Whitley,"Whitley County, Kentucky",21,235,21235
+NC,North Carolina,Wilkes,"Wilkes County, North Carolina",37,193,37193
+AL,Alabama,Winston ,"Winston County, Alabama",01,133,01133
+MS,Mississippi,Winston,"Winston County, Mississippi",28,159,28159
+WV,West Virginia,Wirt,"Wirt County, West Virginia",54,105,54105
+VA,Virginia,Wise,"Wise County, Virginia",51,195,51195
+KY,Kentucky,Wolfe ,"Wolfe County, Kentucky",21,237,21237
+WV,West Virginia,Wood,"Wood County, West Virginia",54,107,54107
+PA,Pennsylvania,Wyoming ,"Wyoming County, Pennsylvania",42,131,42131
+WV,West Virginia,Wyoming,"Wyoming County, West Virginia",54,109,54109
+VA,Virginia,Wythe,"Wythe County, Virginia",51,197,51197
+NC,North Carolina,Yadkin,"Yadkin County, North Carolina",37,197,37197
+MS,Mississippi,Yalobusha ,"Yalobusha County, Mississippi",28,161,28161
+NC,North Carolina,Yancey ,"Yancey County, North Carolina",37,199,37199

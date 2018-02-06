@@ -1,0 +1,11 @@
+patchwork-package	patchwork
+&.gg	plot_arithmetic
+*.gg	plot_arithmetic
+-.ggplot	plot_arithmetic
+/.ggplot	plot_arithmetic
+patchwork	patchwork
+plot_arithmetic	plot_arithmetic
+plot_layout	plot_layout
+plot_spacer	plot_spacer
+wrap_plots	wrap_plots
+|.ggplot	plot_arithmetic
