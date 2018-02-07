@@ -27,3 +27,4 @@ vignettes/*.pdf
 # Packrat and rproj
 .Rproj.user
 /raw_data/
+packrat/lib*/
