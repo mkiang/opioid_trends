@@ -48,7 +48,7 @@ load_mcod_wrapper <- function(year, download_dir) {
                      narcan::zap_dta_data(dta_df = .)
     } else {
         fname <- sprintf("%s/mort%s.csv.zip", download_dir, year)
-        dfm   <- readr::read_csv(fname)
+        df    <- readr::read_csv(fname)
     }
     return(df %>% dplyr::mutate(year = year))
 }
