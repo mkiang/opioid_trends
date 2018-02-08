@@ -3,7 +3,7 @@ title: "eTable 8. Joinpoint results by ICD-10 opioid type for the black populati
 output: word_document
 ---
     
-    ```{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
