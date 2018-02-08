@@ -14,7 +14,7 @@ Reproducible code for our paper ["Trends in Black and White Opioid Mortality in 
 Issues
 ------
 
-Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues) or email.
+Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues) or via email.
 
 Requirements
 ============
@@ -40,10 +40,15 @@ To run this code, you'll need the following `R` packages from CRAN:
 -   `knitr`
 -   `config`
 -   `rmarkdown`
+-   `yaml`
+-   `digest`
 
-In addition, you'll need our package for working with multiple cause of death data, [`narcan`](https://github.com/mkiang/narcan), which is not available on CRAN. If you want to reproduce our figures exactly, you'll need [`patchwork`](https://github.com/thomasp85/patchwork), but the plots can be generated without it.
+In addition, you'll need two packages that are not available on CRAN:
 
-You can install these packages either by using the `00_install_packages.R` script or by using RStudio to open the `opioid_trends.Rproj` file. Using RStudio is the preferred method as `packrat` will automatically make sure you have the correct version of all necessary packages.
+-   Our package for working with multiple cause of death data, [`narcan`](https://github.com/mkiang/narcan).
+-   If you want to reproduce our figures exactly, you'll need [`patchwork`](https://github.com/thomasp85/patchwork), but the plots can be generated without it.
+
+You can install these packages manually or by running the `00_install_packages.R` script in `./code/`. It will *not* install packages you already have. It may require interaction (e.g., confirmation if a package needs to be compiled). The exact versions we used can be found in the `session_info.txt` file.
 
 Analysis pipeline
 =================
@@ -64,7 +69,7 @@ The `./config.yml` file contains several global parameters for the analysis pipe
 -   `delete_zip_orig`: Allows the user to specify if the original MCOD files should be deleted (default: `true`) or saved (`false`) after it has been trimmed in Step 1. These files are typically 75 MB per year.
 -   `delete_trimmed`: Allows the user to specify if the smaller MCOD files should be deleted (default: `true`) or saved (`false`) after it has been subsetted in the Step 1. These files are typically around 20 MB per year.
 -   `delete_processed:` Allows the user to specify if the uncollapsed MCOD files should be deleted (`true`) or saved (default: `false`) after they have been aggregated in Step 3. These files are typically around 15 MB per year. We save them by default to facilitate additional analyses or debugging; however they are not necessary in terms of purely replicating the published analysis.
--   `start_year` and `end_year`: Specify the start (default: `1979`) and end (default: `2015`) years of the analysis. Going earlier than 1979 will not work (due to different ICD codes), but as new data gets released, going later than 2016 *should* work.
+-   `start_year` and `end_year`: Specify the start (default: `1979`) and end (default: `2015`) years of the analysis. Going earlier than 1979 will not work (due to different ICD codes), but as new data gets released, going later than 2015 *should* work.
 -   `num_decimals`: The number of decimals that should be displayed for Tables 1 and 2
 -   `num_decimals_supp`: The number of decimals that should be displayed for the Supplementary Tables
 -   `raw_folder`: Specifies where the raw and trimmed MCOD files should be downloaded (default: `./raw_data`).
@@ -72,7 +77,7 @@ The `./config.yml` file contains several global parameters for the analysis pipe
 -   `output_folder`: Specifies where the tables and plots should be saved.
 -   `proc_in_parallel`: Specifies if downloading and processing should be performed in parallel (`true`) or serially (default: `false`).
 
-Typically, a user should not need to change any of these parameters; however, on a computer with sufficient RAM, setting `proc_in_parallel` to `true` should result in significant speedup. Be warned that this may result in significant RAM usage (~16 GB of RAM for four processes) and is not recommended for typical computing environments.
+Typically, a user should not need to change any of these parameters; however, on a computer with sufficient RAM, setting `proc_in_parallel` to `true` should result in significant (linear) speedup. Be warned that this may result in significant RAM usage (~16 GB of RAM for four processes) and is not recommended for typical computing environments. Downloading and cleaning the data on a single processor takes somewhere in the order of a few hours.
 
 Part 1: Getting the data and calculating rates
 ----------------------------------------------
@@ -146,16 +151,19 @@ For convenience, the `./02_make_plots_and_tables.R` file will run the following 
         -   `./output/table1_joinpoint_1979_2015.docx`
         -   `./output/table2_joinpoint_1999_2015.docx`
 
-In addition, we provide code that will generate the materials in the supplement. See `./code/11_plot_efigure1.R` and `12_generate_supp_tables.R` for more.
+In addition, we provide code that will generate the materials in the supplement. See `./code/11_plot_efigure1.R` and `./code/12_generate_supp_tables.R` for more.
+
+Session Information
+===================
+
+Both `devtools::session_info()` and `sessionInfo()` output can be found in the `./session_info.txt` file.
 
 Authors
 =======
 
--   [Monica Alexander](http://monicaalexander.com) (![Github](http://i.imgur.com/9I6NRUm.png): [MJAlexander](https://github.com/MJAlexander) |
-    ![Twitter](http://i.imgur.com/wWzX9uB.png): [@MonJAlexander](https://twitter.com/monjalexander))
+-   [Monica Alexander](http://monicaalexander.com) (![Github](http://i.imgur.com/9I6NRUm.png): [MJAlexander](https://github.com/MJAlexander) | ![Twitter](http://i.imgur.com/wWzX9uB.png): [@MonJAlexander](https://twitter.com/monjalexander))
 -   [Magali Barbieri](http://www.demog.berkeley.edu/directories/profiles/barbieri.shtml)
--   [Mathew Kiang](https://mathewkiang.com) (![Github](http://i.imgur.com/9I6NRUm.png): [mkiang](https://github.com/mkiang) |
-    ![Twitter](http://i.imgur.com/wWzX9uB.png): [@mathewkiang](https://twitter.com/mathewkiang))
+-   [Mathew Kiang](https://mathewkiang.com) (![Github](http://i.imgur.com/9I6NRUm.png): [mkiang](https://github.com/mkiang) | ![Twitter](http://i.imgur.com/wWzX9uB.png): [@mathewkiang](https://twitter.com/mathewkiang))
 
 Footnotes
 =========
