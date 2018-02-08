@@ -2,7 +2,7 @@
 Trends in Black and White Opioid Mortality in the US, 1979-2015
 ===============================================================
 
-![Figure 1](./output/fig1_rate_and_ratio.png)
+<img src="./output/fig1_rate_and_ratio.png" width="2007" />
 
 Introduction
 ============
