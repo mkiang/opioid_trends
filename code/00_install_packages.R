@@ -1,16 +1,10 @@
 ## 00_install_packages.R
 ## 
-## Installing missing dependencies. Note: We use `packrat` to track project
-## dependencies as it is more robust to a simple install script (such as this).
-## 
-## To use `packrat`, simply download/install RStudio (http://rstudio.com) and
-## open the `opioid_trends.Rproj` file. The correct version of each package
-## will be downloaded automatically. If this does not happen, simply open
-## `opioid_trends.Rproj` and type `packrat::init()`.
-## 
-## If you still prefer this method, just run the script below. The code is
-## not guaranteed to work since some packages may have introduced backwards-
-## incompatible changes.
+## Install all packages necessary for reproducing this paper. Will not 
+## re-install or overwrite existing version of the package. Note that two 
+## packages below are installed using Github because they are not available
+## on CRAN.
+
 req_packages <- c("devtools", "tidyverse", "doParallel", "yaml", "digest", 
                   "foreach", "knitr", "config", "rmarkdown")
 

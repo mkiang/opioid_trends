@@ -161,7 +161,7 @@ Both `devtools::session_info()` and `sessionInfo()` output can be found in the `
 Authors
 =======
 
--   [Monica Alexander](http://monicaalexander.com) (![Github](http://i.imgur.com/9I6NRUm.png): [MJAlexander](https://github.com/MJAlexander) | ![Twitter](http://i.imgur.com/wWzX9uB.png): [@MonJAlexander](https://twitter.com/monjalexander))
+-   [Monica Alexander](http://monicaalexander.com) (![Github](http://i.imgur.com/9I6NRUm.png): [mjalexander](https://github.com/mjalexander) | ![Twitter](http://i.imgur.com/wWzX9uB.png): [@monjlexander](https://twitter.com/monjalexander))
 -   [Magali Barbieri](http://www.demog.berkeley.edu/directories/profiles/barbieri.shtml)
 -   [Mathew Kiang](https://mathewkiang.com) (![Github](http://i.imgur.com/9I6NRUm.png): [mkiang](https://github.com/mkiang) | ![Twitter](http://i.imgur.com/wWzX9uB.png): [@mathewkiang](https://twitter.com/mathewkiang))
 
