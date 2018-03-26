@@ -17,6 +17,10 @@ for (p in req_packages) {
 
 ## These packages are not on CRAN so must be installed separately.
 ## Install narcan for calculating rates and manipulating MCOD files
+## Note that this *will* work with newer versions of narcan; however, the
+## commit referenced below is the version we used. The US Census updated 
+## their population counts after this paper was published so using newer 
+## versions of the counts will result in slightly different rate estimates.
 devtools::install_github("mkiang/narcan", 
                          ref = "b975d72ec98ffa7aa8e73954ac130403a34db870")
 
