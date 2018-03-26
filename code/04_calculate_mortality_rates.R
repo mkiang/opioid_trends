@@ -31,10 +31,11 @@ age_spec_rates <- purrr::map2(.x = c_base,
                                                              !!rlang::sym(.y))) %>% 
     dplyr::bind_cols() %>% 
     dplyr::ungroup() %>% 
-    select(year, age, age_cat, race, pop, pop_std, unit_w, 
-           ends_with("_rate"), ends_with("_var")) %>% 
-    mutate_at(vars(ends_with("_rate"), ends_with("_var")), 
-              coalesce, 0)
+    dplyr::select(year, age, age_cat, race, pop, pop_std, unit_w, 
+                  dplyr::ends_with("_rate"), dplyr::ends_with("_var")) %>% 
+    dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_rate"), 
+                                 dplyr::ends_with("_var")), 
+                     coalesce, 0)
 
 write.csv(age_spec_rates, sprintf("%s/age_specific_rates.csv", csv_folder), 
           row.names = FALSE)
@@ -42,9 +43,10 @@ write.csv(age_spec_rates, sprintf("%s/age_specific_rates.csv", csv_folder),
 ## Calculate age-standardized rates ----
 age_std_wide <- 
     purrr::map(.x = c_base, 
-               .f = ~ narcan::calc_stdrate_var(age_spec_rates, 
+               .f = ~ narcan::calc_stdrate_var(age_spec_rates,
                                                !!rlang::sym(paste0(.x, "_rate")), 
-                                               !!rlang::sym(paste0(.x, "_var")))) %>% 
+                                               !!rlang::sym(paste0(.x, "_var")), 
+                                               year, race)) %>% 
     dplyr::bind_cols() %>% 
     dplyr::ungroup() %>% 
     dplyr::select(year, race, 
