@@ -56,7 +56,7 @@ plot1a <- ggplot(plot1a_df,
     theme(legend.position = c(.01, .99), 
           legend.justification = c(0, 1)) + 
     scale_x_continuous(expand = c(0, .25)) + 
-    scale_y_continuous(limits = c(0, 12.5), expand = c(0, 0))
+    scale_y_continuous(limits = c(0, 15.5), expand = c(0, 0))
 
 ## Bottom figure
 plot1b <- ggplot(opioid_rr_jp, aes(x = year)) + 
