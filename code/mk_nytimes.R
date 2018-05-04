@@ -24,12 +24,11 @@ mk_nytimes <- function(...) {
         # Region
         theme(panel.background = element_rect(fill = c_bg, color = c_bg),
               plot.background  = element_rect(fill = c_bg, color = c_bg),
-              panel.border     = element_rect(color = c_bg)) +
+              panel.border     = element_blank()) +
         
         # Grid
-        theme(panel.grid.major = element_line(color = c_grid, size = .25),
-              panel.grid.minor = element_blank(),
-              axis.ticks       = element_blank()) +
+        theme(panel.grid.major = element_blank(),
+              panel.grid.minor = element_blank()) +
         
         # Legend
         theme(legend.position = c(0, 1),
@@ -47,7 +46,7 @@ mk_nytimes <- function(...) {
               axis.title.y   = element_text(size = 12, color = c_mtext,
                                             hjust = 1)) +
         # Facets
-        theme(strip.background = element_rect(fill = c_grid, color = c_btext),
+        theme(strip.background = element_rect(fill = c_bg, color = c_btext),
               strip.text = element_text(size = 10, color = c_btext)) +
         
         # Plot margins

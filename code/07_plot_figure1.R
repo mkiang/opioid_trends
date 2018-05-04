@@ -32,7 +32,8 @@ opioid_rr_jp <- import_results_data(
            "02_opioid_rate_ratio.data.txt"))
 
 plot1a_df <- opioid_rates_jp %>% 
-    filter(opioid_type == "opioid") %>% 
+    filter(opioid_type == "opioid", 
+           race != "total") %>% 
     ungroup() %>% 
     mutate(race_cat = factor(race, 
                              levels = c("total", "white", "black"), 
@@ -47,16 +48,16 @@ plot1a <- ggplot(plot1a_df,
     geom_errorbar(aes(ymin = std_rate - 1.96 * standarderror, 
                       ymax = std_rate + 1.96 * standarderror, color = race_cat), 
                   width = .15, alpha = .9) + 
-#    geom_point(aes(y = std_rate), color = "white", size = 2.5) + 
-    geom_point(aes(y = std_rate, color = race_cat), alpha = .9, size = 1.75) + 
-    mk_nytimes() + 
+    geom_point(aes(y = std_rate, color = race_cat), alpha = .9, size = 1) + 
+    mk_nytimes(legend.position = c(.01, .99), 
+               legend.justification = c(0, 1), 
+               axis.line = element_line(color = 'black', 
+                                        linetype = 'solid')) + 
     labs(x = NULL, y = "Rate (per 100,000)") + 
     scale_color_brewer(NULL, palette = "Set1") + 
     scale_shape_ordinal(NULL) + 
-    theme(legend.position = c(.01, .99), 
-          legend.justification = c(0, 1)) + 
-    scale_x_continuous(expand = c(0, .25)) + 
-    scale_y_continuous(limits = c(0, 12.5), expand = c(0, 0))
+    scale_x_continuous(expand = c(0, .5)) + 
+    scale_y_continuous(limits = c(0, 15.5), expand = c(0, 0))
 
 ## Bottom figure
 plot1b <- ggplot(opioid_rr_jp, aes(x = year)) + 
@@ -64,9 +65,8 @@ plot1b <- ggplot(opioid_rr_jp, aes(x = year)) +
                       ymax = opioid_rr * exp(1.96 * standarderror)), 
                   width = .15, alpha = .9) + 
     geom_line(aes(y = model), alpha = .95) +
-#    geom_point(aes(y = opioid_rr), color = "white", size = 2.5) + 
-    geom_point(aes(y = opioid_rr), alpha = .95, size = 1.75) + 
-    mk_nytimes() + 
+    geom_point(aes(y = opioid_rr), alpha = .95, size = 1) + 
+    mk_nytimes(axis.line = element_line(color = 'black', linetype = 'solid')) + 
     labs(x = NULL, y = "Rate ratio") + 
     theme(legend.position = c(.01, .99), 
           legend.justification = c(0, 1)) + 
@@ -79,4 +79,4 @@ ggsave(sprintf("%s/fig1_rate_and_ratio.pdf", output_dir),
        width = 8.5, units = "cm", height = 5, scale = 2, device = cairo_pdf)
 ggsave(sprintf("%s/fig1_rate_and_ratio.png", output_dir),
        plot = plot1a + plot1b + plot_layout(ncol = 1, heights = c(3, 1)), 
-       width = 8.5, units = "cm", height = 5, scale = 2, dpi = 300)
+       width = 8.5, units = "cm", height = 5, scale = 2, dpi = 1200)
