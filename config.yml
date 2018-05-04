@@ -16,7 +16,7 @@ default:
   delete_cleaned: true      # Delete the cleaned files after collapsing
   start_year: 1979          # Year to start
   end_year: 2015            # Year to end
-  num_decimals: 1           # Number of decimals for tables 1 and 2
+  num_decimals: 3           # Number of decimals for tables 1 and 2
   num_decimals_supp: 2      # Number of decimals for supplemental tables
   raw_folder: './raw_data'  # Where to save unprocessed data
   sav_folder: './data'      # Where to save processed data
