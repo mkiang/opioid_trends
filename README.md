@@ -3,7 +3,7 @@
 Trends in Black and White Opioid Mortality in the US, 1979-2015
 ===============================================================
 
-<img src="./output/fig1_rate_and_ratio.png" width="2007" />
+<img src="./output/fig1_rate_and_ratio.png" width="8031" />
 
 Introduction
 ============
@@ -16,6 +16,14 @@ Issues
 ------
 
 Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues) or via email.
+
+Timeline
+--------
+
+1.  Submitted: 12/15/2017
+2.  Revisions requested: 1/14/2018
+3.  Revisions submitted: 1/19/2018
+4.  Accepted: 1/22/2018
 
 Requirements
 ============
