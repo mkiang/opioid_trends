@@ -42,8 +42,8 @@ plot2 <- ggplot(plot2_df,
                       ymax = std_rate + 1.96 * standarderror), 
                   width = .1, alpha = .5) + 
     geom_line(aes(y = model), alpha = .95) +
-    geom_point(aes(y = std_rate), alpha = .95, size = 1.75) + 
-    mk_nytimes() + 
+    geom_point(aes(y = std_rate), alpha = .95, size = 1) + 
+    mk_nytimes(axis.line = element_line(color = 'black', linetype = 'solid')) + 
     labs(x = NULL, y = "Rate (per 100,000)") + 
     scale_color_brewer(NULL, palette = "Dark2") + 
     scale_shape_ordinal(NULL) + 
@@ -57,4 +57,4 @@ ggsave(sprintf('%s/fig2_opioid_types.pdf', output_dir), plot2,
        device = cairo_pdf)
 ggsave(sprintf('%s/fig2_opioid_types.png', output_dir), plot2, 
        width = 8.5, height = 5, units = "cm", scale = 2, 
-       dpi = 300)
+       dpi = 1200)
