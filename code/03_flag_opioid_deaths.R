@@ -12,8 +12,8 @@ cfig <- config::get()
 csv_folder <- cfig$sav_folder
 year_0     <- cfig$start_year
 year_n     <- cfig$end_year
-paral_proc <- TRUE # cfig$proc_in_parallel
-del_clean  <- FALSE # cfig$delete_cleaned
+paral_proc <- cfig$proc_in_parallel
+del_clean  <- cfig$delete_cleaned
 
 ## Load parallel package if necessary ----
 if (paral_proc) {
