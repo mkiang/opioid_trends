@@ -26,6 +26,11 @@ Timeline
 4.  Accepted: 1/22/2018
 5.  Published ahead-of-print online: 5/29/2018
 
+Additional analyses
+-------------------
+
+1.  [Comparing the model fits](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.html): Our data (1979 to 2015) vs adding in the (released-after-submission) 2016 data. ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.Rmd).)
+
 Requirements
 ============
 
