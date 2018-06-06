@@ -28,3 +28,4 @@ vignettes/*.pdf
 .Rproj.user
 /raw_data/
 packrat/lib*/
+rmds/add_analyses/add_2016_data_cache/
