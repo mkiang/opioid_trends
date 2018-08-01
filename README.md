@@ -8,9 +8,9 @@ Trends in Black and White Opioid Mortality in the US, 1979-2015
 Introduction
 ============
 
-Reproducible code for our paper ["Trends in Black and White Opioid Mortality in the United States, 1979-2015"](https://journals.lww.com/epidem/Abstract/publishahead/Trends_in_Black_and_White_Opioid_Mortality_in_the.98701.aspx), which uses multiple cause of death data to examine racial differences in opioid mortality over time. The full citation is:
+Reproducible code for our paper ["Trends in Black and White Opioid Mortality in the United States, 1979-2015"](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx) [(PDF)](./assets/opioid_trends_paper.pdf), which uses multiple cause of death data to examine racial differences in opioid mortality over time. The full citation is:
 
-> Alexander MJ, Kiang MV, Barbieri M. Trends in Black and White Opioid Mortality in the United States, 1979–2015. Epidemiology \[Internet\]. 9000; Publish Ahead of Print. Available from: <https://journals.lww.com/epidem/Fulltext/publishahead/Trends_in_Black_and_White_Opioid_Mortality_in_the.98701.aspx>
+> Alexander MJ, Kiang MV, Barbieri M. Trends in Black and White Opioid Mortality in the United States, 1979–2015. Epidemiology. September 2018. Volume 29, Issue 5, p 707-715. doi: 10.1097/EDE.0000000000000858. Available from: <https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx>
 
 Issues
 ------
@@ -25,6 +25,7 @@ Timeline
 3.  Revisions submitted: 1/19/2018
 4.  Accepted: 1/22/2018
 5.  Published ahead-of-print online: 5/29/2018
+6.  Publisher's version available online: 8/1/2018
 
 Additional analyses
 -------------------

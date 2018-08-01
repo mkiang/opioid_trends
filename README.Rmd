@@ -12,9 +12,9 @@ knitr::include_graphics("./output/fig1_rate_and_ratio.png")
 
 # Introduction
 
-Reproducible code for our paper ["Trends in Black and White Opioid Mortality in the United States, 1979-2015"](https://journals.lww.com/epidem/Abstract/publishahead/Trends_in_Black_and_White_Opioid_Mortality_in_the.98701.aspx), which uses multiple cause of death data to examine racial differences in opioid mortality over time. The full citation is:
+Reproducible code for our paper ["Trends in Black and White Opioid Mortality in the United States, 1979-2015"](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx) [(PDF)](./assets/opioid_trends_paper.pdf), which uses multiple cause of death data to examine racial differences in opioid mortality over time. The full citation is:
 
-> Alexander MJ, Kiang MV, Barbieri M. Trends in Black and White Opioid Mortality in the United States, 1979–2015. Epidemiology [Internet]. 9000; Publish Ahead of Print. Available from: https://journals.lww.com/epidem/Fulltext/publishahead/Trends_in_Black_and_White_Opioid_Mortality_in_the.98701.aspx
+> Alexander MJ, Kiang MV, Barbieri M. Trends in Black and White Opioid Mortality in the United States, 1979–2015. Epidemiology. September 2018. Volume 29, Issue 5, p 707-715. doi: 10.1097/EDE.0000000000000858. Available from: https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx
 
 ## Issues
 Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues) or via email.
@@ -26,6 +26,7 @@ Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues
 1. Revisions submitted: 1/19/2018
 1. Accepted: 1/22/2018
 1. Published ahead-of-print online: 5/29/2018
+1. Publisher's version available online: 8/1/2018
 
 ## Additional analyses
 1. [Comparing the model fits](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.html): Our data (1979 to 2015) vs adding in the (released-after-submission) 2016 data. ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.Rmd).)
