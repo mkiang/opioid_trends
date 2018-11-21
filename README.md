@@ -17,6 +17,15 @@ Issues
 
 Please submit issues [via Github](https://github.com/mkiang/opioid_trends/issues) or via email.
 
+Typographical error in the abstract
+-----------------------------------
+
+Please note that the current version of the PDF (8/1/2018) has an error in the abstract. The first sentence of the *Results* section should read:
+
+> From 1979 to 2015, the long-term trends in opioid-related mortality for US black and white residents went through three successive waves.
+
+We thank Mia Kibel for kindly pointing out this error.
+
 Timeline
 --------
 
