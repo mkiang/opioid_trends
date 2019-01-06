@@ -15,13 +15,13 @@ default:
   delete_trimmed: true      # Delete the "trimmed" data file?
   delete_cleaned: true      # Delete the cleaned files after collapsing
   start_year: 1979          # Year to start
-  end_year: 2015            # Year to end
+  end_year: 2017            # Year to end
   num_decimals: 3           # Number of decimals for tables 1 and 2
   num_decimals_supp: 2      # Number of decimals for supplemental tables
   raw_folder: './raw_data'  # Where to save unprocessed data
   sav_folder: './data'      # Where to save processed data
   output_folder: './output' # Where to save plots/tables/supplemental material
-  proc_in_parallel: false   # When true, perform calculations in parallel
+  proc_in_parallel: true    # When true, perform calculations in parallel
 
 # This config version is for me to debug. Keeps original files so I don't
 # need to keep downloading over and over.

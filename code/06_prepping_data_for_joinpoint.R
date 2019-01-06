@@ -16,12 +16,12 @@ jp1_data <- std_rates_long %>%
     mutate(sd = sqrt(var)) %>% 
     arrange(opioid_type, race, year)
 
-write.csv(jp1_data, row.names = FALSE, 
+write.csv(jp1_data %>% select(-var), row.names = FALSE, 
           file = "./joinpoint_analysis/01_opioid_rates_long.csv")
 
 ## For joinpoint analysis 2: rate ratio ----
 ##  Already in the right shape, just need to save to new location
-write.csv(opioid_rr, row.names = FALSE, 
+write.csv(opioid_rr %>% select(-var), row.names = FALSE, 
           file = "./joinpoint_analysis/02_opioid_rate_ratio.csv")
     
 ## For joinpoint analysis 3: heroin, methadone, other ----
@@ -36,7 +36,7 @@ opioids_by_type <- std_rates_long %>%
            sd       = sqrt(var))
 
 options(scipen = 10)    ## Or else it writes one row using scientific notation
-write.csv(opioids_by_type, row.names = FALSE, 
+write.csv(opioids_by_type %>% select(-var), row.names = FALSE, 
           file = "./joinpoint_analysis/03_opioid_rates_by_type.csv")
 
 ## For joinpoint analysis 4: ICD10 years by all types ----
@@ -46,5 +46,5 @@ opioids_type_icd10 <- std_rates_long %>%
     arrange(opioid_type, race, year) %>% 
     mutate(sd = sqrt(var))
 
-write.csv(opioids_type_icd10, row.names = FALSE, 
+write.csv(opioids_type_icd10 %>% select(-var), row.names = FALSE, 
           file = "./joinpoint_analysis/04_opioid_rates_icd10type.csv")
