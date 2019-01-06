@@ -29,3 +29,4 @@ vignettes/*.pdf
 /raw_data/
 packrat/lib*/
 rmds/add_analyses/add_2016_data_cache/
+data/cleaned_mcod_*.RDS
