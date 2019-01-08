@@ -1,0 +1,286 @@
+---
+title: "Comparing model fits if we add in 2017 data"
+author: "Mathew Kiang"
+date: "1/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 7)
+knitr::opts_chunk$set(fig.height = 5)
+```
+
+## Introduction
+The 2017 multiple cause of death data have just been released. In what is now a bit of a tradition, I will compare the projections from our paper (which had only up to 2015 data) to the observed data for 2016 and 2017. See the [2016 version of this analysis](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.html) here ([code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.Rmd)). 
+
+We will compare two sets of joinpoint models:
+
+1. Our published model that uses 1979 to 2015 (with 2017 projected out)
+1. The same model but with 1979 to 2017 data
+
+## Imports
+Let's load the packages we will need and `source()` one of my themes.
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, results='hide'}
+library(tidyverse)
+library(patchwork)    # devtools::install_github("thomasp85/patchwork")
+source(paste0("https://raw.githubusercontent.com/mkiang/", 
+              "opioid_hotspots/master/code/mk_nytimes.R"))
+```
+
+## Define helper functions
+We're going to define two helper functions. The first, `return_download_url()` just takes as an argument one of the years of analysis (2015 or 2017), one of the types of joinpoint analyses performed (rates_long, rate_ratio, broad_type, icd10_type), and the type of joinpoint results file (data, aapc, apc, etc.).
+
+The second helper function then just imports the data from the specific URL and does some minor cleaning such as removing odd characters and appending the results year.
+
+```{r}
+## Helper functions
+return_download_url <- function(r_year, results_type, file_type = "data") {
+    ## Constants
+    base_url <-  "https://raw.githubusercontent.com/mkiang/opioid_trends"
+    url_dict <- list("2015" = "master", 
+                     "2017" = "with-2017-data")
+    dir_dict <- list(rates_long = "01_opioid_rates_long", 
+                     rate_ratio = "02_opioid_rate_ratio", 
+                     broad_type = "03_opioid_rates_by_type", 
+                     icd10_type = "04_opioid_rates_icd10type")
+    
+    sprintf("%s/%s/joinpoint_analysis/%s/%s.%s.txt", 
+            base_url, url_dict[[as.character(r_year)]], 
+            dir_dict[[results_type]], dir_dict[[results_type]], 
+            file_type)
+}
+
+import_url_results <- function(r_year, results_type, file_type = "data") {
+    
+    df <- readr::read_delim(return_download_url(r_year, results_type, file_type), 
+                            delim = ";", 
+                            escape_double =  FALSE, 
+                            trim_ws = TRUE) %>% 
+        mutate(results_year = r_year)
+    
+    names(df) <- tolower(names(df))
+    names(df) <- gsub(" ", "", names(df))
+    names(df) <- gsub(",", "_", names(df))
+    
+    return(df)
+}
+```
+
+## Comparing Figure 1
+Now let's download and clean up both the 2015 and 2017 results.
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, results='hide'}
+## Opioid mortality rates and joinpoint fits
+opioid_mort <- bind_rows(
+    import_url_results(2015, "rates_long", "data"), 
+    import_url_results(2017, "rates_long", "data")
+    ) %>% 
+    filter(opioid_type == "opioid", 
+           race != "total") %>% 
+    ungroup() %>% 
+    mutate(race_cat = factor(race, 
+                             levels = c("total", "white", "black"), 
+                             labels = c("Total", "White", "Black"), 
+                             ordered = TRUE))
+```
+
+Then we take the 2015 results and project out two years to 2017.
+```{r, cache=TRUE}
+## Project out the 2015 results to 2017
+opioid_mort <- bind_rows(
+    opioid_mort %>% 
+        filter(results_year == 2015, year == 2015) %>% 
+        mutate(year = 2016, 
+               model = (1 + as.numeric(gsub("^", "", apc, fixed = TRUE))/100) * 
+                   model, 
+               std_rate = NA, 
+               standarderror = NA),
+     opioid_mort %>% 
+        filter(results_year == 2015, year == 2015) %>% 
+        mutate(year = 2017, 
+               model = (1 + as.numeric(gsub("^", "", apc, fixed = TRUE))/100)^2 * 
+                   model, 
+               std_rate = NA, 
+               standarderror = NA),
+    opioid_mort
+    )
+```
+
+We make the top plot (Fig 1a).
+
+```{r}
+p1 <- ggplot() + 
+    geom_point(data = opioid_mort %>% 
+                   filter(results_year == 2017), 
+               aes(x = year, y = std_rate, 
+                   group = race_cat, color = race_cat), 
+               alpha = .5) + 
+    geom_errorbar(data = opioid_mort %>% 
+                   filter(results_year == 2017), 
+               aes(x = year, group = race_cat, color = race_cat, 
+                   ymin = std_rate - 1.96 * standarderror, 
+                   ymax = std_rate + 1.96 * standarderror), 
+               alpha = .5, width = .15) + 
+    geom_line(data = opioid_mort, 
+              aes(x = year, y = model, 
+                  group = interaction(race_cat, results_year), 
+                  color = race_cat, linetype = as.factor(results_year)), 
+              alpha = .9) +
+    mk_nytimes() + 
+    scale_color_brewer(NULL, palette = "Set1") + 
+    scale_linetype_manual("Joinpoint Model Fit", 
+                          values = c("dashed", "solid")) + 
+    scale_x_continuous(NULL) + 
+    scale_y_continuous("Opioid-related mortality rate")
+```
+
+Same steps as above except for the rate ratio which will be the bottom plot (Fig 1b).
+```{r, cache=TRUE, message=FALSE, error=FALSE, warning=FALSE, results='hide'}
+## Rate ratio
+rate_ratios <- bind_rows(
+    import_url_results(2015, "rate_ratio", "data"), 
+    import_url_results(2017, "rate_ratio", "data")
+    ) 
+
+## Project the 2015 model out one year
+rate_ratios <- bind_rows(
+    rate_ratios, 
+    rate_ratios %>% 
+        filter(results_year == 2015, year == 2015) %>% 
+        mutate(year = 2016, 
+               model = (1 + as.numeric(gsub("^", "", apc, fixed = TRUE))/100) * 
+                   model, 
+               opioid_rr = NA, 
+               standarderror = NA),
+      rate_ratios %>% 
+        filter(results_year == 2015, year == 2015) %>% 
+        mutate(year = 2017, 
+               model = (1 + as.numeric(gsub("^", "", apc, fixed = TRUE))/100)^2 * 
+                   model, 
+               opioid_rr = NA, 
+               standarderror = NA)
+    )
+```
+
+```{r}
+p2 <- ggplot() + 
+    geom_point(data = rate_ratios %>% 
+                   filter(results_year == 2017), 
+               aes(x = year, y = opioid_rr), 
+               alpha = .5) + 
+    geom_errorbar(data = rate_ratios %>% 
+                      filter(results_year == 2017), 
+                  aes(x = year, 
+                      ymin = opioid_rr - 1.96 * standarderror, 
+                      ymax = opioid_rr + 1.96 * standarderror), 
+                  alpha = .5, width = .15) + 
+    geom_line(data = rate_ratios, 
+              aes(x = year, y = model, 
+                  group = results_year, 
+                  linetype = as.factor(results_year)), 
+              alpha = 1) +
+    mk_nytimes(legend.position = "none") + 
+    scale_color_brewer(NULL, palette = "Set1") + 
+    scale_linetype_manual("Joinpoint Model Fit", 
+                          values = c("dashed", "solid")) + 
+    scale_x_continuous(NULL) + 
+    scale_y_continuous("Rate Ratio", trans = "log", 
+                       breaks = c(.5, 1, 2))
+```
+
+Print the figure: 
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+fig1 <- p1 + p2 + plot_layout(ncol = 1, heights = c(3, 1))
+print(fig1)
+```
+
+
+## Comparing Figure 3
+We can do the steps as before, but for Figure 3. (Because the early parts of joinpoint regression are generally insensitive to changes at the end, I didn't do this for Figure 2, but you could.)
+
+```{r, cache=TRUE, message=FALSE, error=FALSE, warning=FALSE, results='hide'}
+## By ICD10 type
+icd10_types <- bind_rows(
+    import_url_results(2015, "icd10_type", "data"), 
+    import_url_results(2017, "icd10_type", "data")
+) %>% 
+    filter(race != "total", 
+           opioid_type %in%  c("heroin", "methadone", "natural", 
+                               "synth", "other_op")) %>% 
+    ungroup() %>% 
+    mutate(race_cat = factor(race, 
+                             levels = c("total", "white", "black"), 
+                             labels = c("Total", "White", "Black"), 
+                             ordered = TRUE), 
+           opioid_cat = factor(opioid_type, 
+                               levels = c("heroin", "methadone", 
+                                          "natural", "synth", "other_op"), 
+                               labels = c("Heroin", "Methadone", 
+                                          "Natural/Semi-natural", 
+                                          "Synthetic", "Unspecified"), 
+                               ordered = TRUE))
+
+```
+
+```{r}
+## Project the 2015 model out one year
+icd10_types <- bind_rows(
+    icd10_types, 
+    icd10_types %>% 
+        filter(results_year == 2015, year == 2015) %>% 
+        mutate(year = 2016, 
+               model = (1 + as.numeric(gsub("^", "", apc, fixed = TRUE))/100) * 
+                   model, 
+               std_rate = NA, 
+               standarderror = NA),
+      icd10_types %>% 
+        filter(results_year == 2015, year == 2015) %>% 
+        mutate(year = 2017, 
+               model = (1 + as.numeric(gsub("^", "", apc, fixed = TRUE))/100)^2 * 
+                   model, 
+               std_rate = NA, 
+               standarderror = NA)
+    )
+
+sub_types <- icd10_types %>% 
+    filter(!(opioid_type %in% c("methadone", "other_op")))
+```
+
+For ease of visualization, I'm going to remove methadone and other/unspecific opioids because the model fits are almost the same.
+
+```{r}
+fig3 <- ggplot() + 
+    geom_point(data = sub_types %>% 
+                   filter(results_year == 2017), 
+               aes(x = year, y = std_rate, 
+                   group = race_cat, color = race_cat), 
+               alpha = .5) + 
+    geom_errorbar(data = sub_types %>% 
+                      filter(results_year == 2017), 
+                  aes(x = year, group = race_cat, color = race_cat, 
+                      ymin = std_rate - 1.96 * standarderror, 
+                      ymax = std_rate + 1.96 * standarderror), 
+                  alpha = .5, width = .15) + 
+    geom_line(data = sub_types, 
+              aes(x = year, y = model, 
+                  group = interaction(race_cat, results_year), 
+                  color = race_cat, linetype = as.factor(results_year)), 
+              alpha = .9) +
+    mk_nytimes(legend.position = "none") + 
+    facet_grid(opioid_cat ~ .) + 
+    scale_color_brewer(NULL, palette = "Set1") + 
+    scale_linetype_manual("Joinpoint Model Fit", 
+                          values = c("dashed", "solid")) + 
+    scale_x_continuous(NULL) + 
+    scale_y_continuous("Age-adjusted mortality rate")
+
+print(fig3)
+```
+
+## Save the grobs
+```{r}
+saveRDS(fig1, "./../../output/add_analyses/fig1_with_2016.RDS")
+saveRDS(fig1, "./../../output/add_analyses/fig3_with_2016.RDS")
+```
