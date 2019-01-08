@@ -1,10 +1,10 @@
 "opioid_type";"race";"Joinpoint Model";"AAPC Index";"Start Obs";"End Obs";"AAPC";"AAPC C.I. Low";"AAPC C.I. High";"Statistically Significant (0=No  1=Yes)";"Test Statistic";"P-Value"
-"heroin";"black";2;Full Range;1979;2015;7.317;6.007;8.644;1;11.266;0.000
-"heroin";"total";3;Full Range;1979;2015;10.947;9.163;12.759;1;12.561;0.000
-"heroin";"white";3;Full Range;1979;2015;11.860;9.958;13.795;1;12.809;0.000
-"methadone";"black";4;Full Range;1979;2015;-0.100;-3.958;3.914;0;-0.050;0.960
-"methadone";"total";5;Full Range;1979;2015;0.056;-1.568;1.707;0;0.067;0.946
-"methadone";"white";5;Full Range;1979;2015;1.683;-0.456;3.868;0;1.539;0.124
-"nonh_nonm";"black";2;Full Range;1979;2015;7.176;4.842;9.561;1;6.170;0.000
-"nonh_nonm";"total";4;Full Range;1979;2015;8.904;3.790;14.270;1;3.476;0.001
-"nonh_nonm";"white";4;Full Range;1979;2015;9.334;3.912;15.040;1;3.438;0.001
+"heroin";"black";2;Full Range;1979;2017;8.42631;7.15128;9.71651;1;13.40442;0.00000
+"heroin";"total";4;Full Range;1979;2017;11.07634;9.19497;12.99013;1;12.05250;0.00000
+"heroin";"white";4;Full Range;1979;2017;11.53708;9.59253;13.51614;1;12.16759;0.00000
+"methadone";"black";5;Full Range;1979;2017;0.62289;-3.26570;4.66779;0;0.30880;0.75747
+"methadone";"total";5;Full Range;1979;2017;1.21603;-0.92824;3.40670;0;1.10635;0.26857
+"methadone";"white";3;Full Range;1979;2017;1.61178;0.23126;3.01131;1;2.29093;0.02197
+"nonh_nonm";"black";2;Full Range;1979;2017;9.39554;7.49566;11.32900;1;10.04614;0.00000
+"nonh_nonm";"total";4;Full Range;1979;2017;10.17101;5.63970;14.89668;1;4.52027;0.00001
+"nonh_nonm";"white";4;Full Range;1979;2017;10.52402;5.80476;15.45377;1;4.49430;0.00001

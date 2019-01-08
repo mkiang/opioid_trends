@@ -7,7 +7,7 @@ csv_folder <- config::get()$sav_folder
 ## Load data ----
 std_rates_long <- read_csv(sprintf("%s/age_standardized_rates_long.csv", 
                                    csv_folder))
-opioid_rr      <- read_csv(sprintf('%s/opioid_rate_ratio.csv', 
+opioid_rr <- read_csv(sprintf('%s/opioid_rate_ratio.csv', 
                                    csv_folder))
 
 ## For joinpoint analysis 1: pioid, drug, non-opioid drug ----
@@ -21,7 +21,7 @@ write.csv(jp1_data %>% select(-var), row.names = FALSE,
 
 ## For joinpoint analysis 2: rate ratio ----
 ##  Already in the right shape, just need to save to new location
-write.csv(opioid_rr %>% select(-var), row.names = FALSE, 
+write.csv(opioid_rr, row.names = FALSE, 
           file = "./joinpoint_analysis/02_opioid_rate_ratio.csv")
     
 ## For joinpoint analysis 3: heroin, methadone, other ----
