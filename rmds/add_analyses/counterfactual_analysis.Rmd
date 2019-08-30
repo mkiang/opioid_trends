@@ -223,7 +223,28 @@ ggplot2::ggplot(
   ggplot2::theme_bw()
 ```
 
-## Save csv
+
+## Conclusion
+Under the assumptions of our model, between 1979 and 2017, there would have been:
+
+- `r excess_df %>% filter(year == 2017, death_type == "opioid") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more opioid-related deaths in the Black population.
+- `r excess_df %>% filter(year == 2017, death_type == "heroin") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more heroin-related deaths in the Black population.
+- `r excess_df %>% filter(year == 2017, death_type == "methadone") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more methadone-related deaths in the Black population.
+
+Between 1999 and 2017, when the death certificates had more opioid types, there would have been:
+
+- `r excess_df %>% filter(year == 2017, death_type == "natural") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more prescription opioid related deaths in the Black population. 
+- `r excess_df %>% filter(year == 2017, death_type == "synth") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more synthetic opioid related deaths in the Black population. 
+
+Historically, the Black opioid-related mortality rate was lower than the the White opioid-related mortality rate. Under the same assumptions of our model, there would have been `r excess_df %>% filter(death_type == "opioid") %>% filter(cumulative_excess == min(cumulative_excess)) %>% pull(cumulative_excess) %>% abs(.) %>% prettyNum(., big.mark = ",")` fewer opioid-related deaths in the Black population from 1979 to `r excess_df %>% filter(death_type == "opioid") %>% filter(cumulative_excess == min(cumulative_excess)) %>% pull(year) %>% prettyNum(., big.mark = "")`.
+
+
+### Limitations
+This is a straightforward analysis with strong assumptions. These results reflect an impossible world where the opioid-related mortality rate in the Black population is identical to the White population, where the public health and medical response to the epidemic would remain the same, and where the supply/demand/production of the illicit drug market would have been the same. 
+
+On top of this, all limitations in our paper regarding the data still hold. Opioid-related deaths have undoubtedly increased over this period, but so has our detection and testing of them --- we cannot disentable how much of the increase is due to increasing prevalence of testing over time and how much is due to increasing deaths. Likewise, there is substantial geographic variation in the quality of post-mortem testing.
+
+### Save csv
 ```{r}
 readr::write_csv(excess_df, "./counterfactual_analysis_excess_deaths.csv")
 ```
