@@ -1,0 +1,230 @@
+---
+title: "Counterfactual Analysis"
+author: "Mathew Kiang"
+date: "8/29/2019"
+output:
+  html_document:
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The analysis in our paper is entirely descriptive. However, to contextualize the opioid epidemic, we could imagine a counterfactual world in which the Black population experienced the same opioid-related mortality rate as the White population. What would this look like? How many more deaths would there be? 
+
+There are at least a couple ways to do this, but the most simplest and most transparent way is to (1) apply the age-specific opioid-related mortality rates of the White population to the observed Black population counts for each year, and then (2) compare the counterfactual number of deaths to the observed number of deaths to get the number of "excess deaths" each year. 
+
+## Analysis
+
+### Import the data 
+
+We'll begin by loading up necessary packages and importing the data. Note that the data in the paper only go up to 2015 so we use the data file from [an updated analysis](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2017_data.html) to get 2017 data. 
+
+```{r, error=FALSE, warning=FALSE, message=FALSE, results='hide'}
+library(tidyverse)
+library(here)
+library(DT)
+
+## Get from the 2017 branch that has updated data
+age_spec <-
+  readr::read_csv(
+    paste0(
+      "https://raw.githubusercontent.com/mkiang",
+      "/opioid_trends/with-2017-data/data/",
+      "age_specific_rates.csv"
+    )
+  )
+
+## We're doing a black to white comparison so we don't need total population
+age_spec <- age_spec %>% 
+    dplyr::filter(race != "total") %>% 
+    dplyr::arrange(race, year, age)
+```
+
+### Create an observed dataframe
+We have age-specific mortality rates, but we want the actual number of deaths so we apply the rates back to the population. Note that the rate is per 100,000 and we `round()` off the error.
+
+```{r}
+observed_df <- age_spec %>% 
+    dplyr::filter(race == "black") %>% 
+    dplyr::transmute(
+        year = year, 
+        age = age, 
+        age_cat = age_cat, 
+        pop_black = pop, 
+        obs_opioid_deaths = round(opioid_rate * pop_black / 100000), 
+        obs_drug_deaths = round(drug_rate * pop_black / 100000), 
+        obs_nonopioid_deaths = round(nonopioid_rate * pop_black / 100000), 
+        obs_opium_deaths = round(opium_rate * pop_black / 100000), 
+        obs_heroin_deaths = round(heroin_rate * pop_black / 100000), 
+        obs_natural_deaths = round(natural_rate * pop_black / 100000), 
+        obs_methadone_deaths = round(methadone_rate * pop_black / 100000), 
+        obs_synth_deaths = round(synth_rate * pop_black / 100000)
+    )
+```
+
+Now, let's collapse this across ages to get the total numnber of Black opioid-related deaths per year.
+
+```{r}
+observed_df <- observed_df %>% 
+    dplyr::group_by(year) %>% 
+    dplyr::select(year, dplyr::starts_with("obs")) %>% 
+    dplyr::summarize_all(sum)
+
+## Reshape it to long
+observed_df <- observed_df %>%
+    tidyr::gather(death_type, observed, dplyr::starts_with("obs")) %>%
+    dplyr::mutate(death_type = gsub("obs_|_deaths", "", death_type))
+```
+
+```{r}
+DT::datatable(observed_df, rownames = FALSE)
+```
+
+### Create a counterfactual dataframe
+We create a counterfactual dataframe by taking the age-specific population counts for Black Americans and applying the White age-specific opioid-related mortality rates. 
+
+```{r}
+## Get Black population by year/age
+black_pop <- age_spec %>% 
+    dplyr::filter(race == "black") %>% 
+    dplyr::select(year, age, age_cat, pop_black = pop)
+
+## Now get the White rates and join with Black population
+counter_df <- age_spec %>% 
+    dplyr::filter(race == "white") %>% 
+    dplyr::left_join(black_pop,
+              by = c("year", "age", "age_cat")) %>% 
+    dplyr::select(year, age, age_cat, race, pop, pop_black, dplyr::everything())
+
+## Calculate the Black deaths that would have occurred with White rate
+counter_df <- counter_df %>% 
+    dplyr::transmute(
+        year = year, 
+        age = age, 
+        age_cat = age_cat, 
+        pop_black = pop_black, 
+        cf_opioid_deaths = opioid_rate * pop_black / 100000, 
+        cf_drug_deaths = drug_rate * pop_black / 100000, 
+        cf_nonopioid_deaths = nonopioid_rate * pop_black / 100000, 
+        cf_opium_deaths = opium_rate * pop_black / 100000, 
+        cf_heroin_deaths = heroin_rate * pop_black / 100000, 
+        cf_natural_deaths = natural_rate * pop_black / 100000, 
+        cf_methadone_deaths = methadone_rate * pop_black / 100000, 
+        cf_synth_deaths = synth_rate * pop_black / 100000
+    )
+```
+
+Let's collapse ages to get the total number of counterfactual deaths per year. 
+```{r}
+counter_df <- counter_df %>% 
+    dplyr::group_by(year) %>% 
+    dplyr::select(year, dplyr::starts_with("cf")) %>% 
+    dplyr::summarize_all(sum)
+
+## Reshape to long
+counter_df <- counter_df %>% 
+    tidyr::gather(death_type, counterfactual, dplyr::starts_with("cf")) %>% 
+    dplyr::mutate(death_type = gsub("cf_|_deaths", "", death_type))
+```
+
+```{r}
+DT::datatable(counter_df)
+```
+
+### Calculate the "excess deaths"
+
+We want a dataframe that has the number of counterfactual deaths and the number of observed deaths for every year/drug type combination:
+
+```{r}
+excess_df <- counter_df %>% 
+    dplyr::left_join(
+        observed_df, 
+        by = c("year", "death_type")
+    ) %>% 
+    dplyr::mutate(excess = round(counterfactual - observed)) %>% 
+    dplyr::group_by(death_type) %>% 
+    dplyr::mutate(cumulative_excess = cumsum(excess)) %>% 
+    dplyr::ungroup()
+```
+
+Note that we cannot have "fractional deaths" so we round the excess results. 
+
+```{r}
+DT::datatable(excess_df, rownames = FALSE)
+```
+
+## Plot the number of excess deaths, by type, 1979 to 2017 (ICD-9 categories)
+
+Note, in 1999, the CDC switched from ICD-9 to ICD-10. Therefore, for 1978 to 1998, opioid categories only consisted of all opioids, heroin, opium, or methatdone. We plot the excess deaths here:
+
+```{r}
+ggplot2::ggplot(
+  excess_df %>%
+    dplyr::filter(death_type %in% c("opioid", "heroin", "opium", "methadone")),
+  ggplot2::aes(x = year, y = excess, color = death_type)
+) +
+  ggplot2::geom_line() +
+  ggplot2::theme_bw()
+```
+
+## Plot the number of excess deaths, by type, 1999 to 2017 (ICD-10 categories)
+
+The ICD-10 data (1999 to 2017) have finer opioid categories:
+
+```{r fig.height=12, fig.width=8}
+ggplot2::ggplot(
+  excess_df %>%
+    dplyr::filter(year > 1998) %>%
+    dplyr::filter(
+      death_type %in% c("opioid", "heroin", "opium", "methadone", "natural", "synth")
+    ),
+  ggplot2::aes(x = year, y = excess, color = death_type)
+) +
+  ggplot2::geom_line() +
+  ggplot2::facet_wrap(~ death_type,
+                      ncol = 1,
+                      scales = "free") +
+  ggplot2::theme_bw()
+```
+Note the changing y-axis scale. 
+
+## Plot the *cumulative* number of excess deaths, by type, 1979 to 2017 (ICD-9 categories)
+```{r}
+ggplot2::ggplot(
+  excess_df %>%
+    dplyr::filter(death_type %in% c("opioid", "heroin", "opium", "methadone")),
+  ggplot2::aes(x = year, y = cumulative_excess, color = death_type)
+) +
+  ggplot2::geom_step() +
+  ggplot2::theme_bw()
+```
+
+## Plot the *cumulative* number of excess deaths, by type, 1999 to 2017 (ICD-10 categories)
+
+Again, note the changing y-axis scale. 
+
+```{r fig.height=12, fig.width=8}
+ggplot2::ggplot(
+  excess_df %>%
+    dplyr::filter(year > 1998) %>%
+    dplyr::filter(
+      death_type %in% c("opioid", "heroin", "opium", "methadone", "natural", "synth")
+    ),
+  ggplot2::aes(x = year, y = cumulative_excess, color = death_type)
+) +
+  ggplot2::geom_step() +
+  ggplot2::facet_wrap(~ death_type,
+                      ncol = 1,
+                      scales = "free") +
+  ggplot2::theme_bw()
+```
+
+## Save csv
+```{r}
+readr::write_csv(excess_df, "./counterfactual_analysis_excess_deaths.csv")
+```
+
