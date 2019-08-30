@@ -8,8 +8,8 @@
 # Introduction
 
 Reproducible code for our paper [“Trends in Black and White Opioid
-Mortality in the United States,
-1979-2015”](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx)
+Mortality in the United
+States, 1979-2015”](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx)
 [(PDF)](./assets/opioid_trends_paper.pdf), which uses multiple cause of
 death data to examine racial differences in opioid mortality over time.
 The full citation is:
@@ -59,6 +59,11 @@ We thank Mia Kibel for kindly pointing out this error.
     (1979 to 2015) vs adding in the (released-after-submission) 2017
     data.
     ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2017_data.Rmd).)
+3.  [Counterfactual
+    world](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis.html):
+    A simple counterfactual analysis where the Black population had the
+    same opioid-related mortality rate as the White population.
+    ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis.Rmd).)
 
 # Requirements
 
@@ -156,7 +161,7 @@ analysis pipeline in JSON format. Specifically:
 Typically, a user should not need to change any of these parameters;
 however, on a computer with sufficient RAM, setting `proc_in_parallel`
 to `true` should result in significant (linear) speedup. Be warned that
-this may result in significant RAM usage (\~16 GB of RAM for four
+this may result in significant RAM usage (~16 GB of RAM for four
 processes) and is not recommended for typical computing environments.
 Downloading and cleaning the data on a single processor takes somewhere
 in the order of a few hours.

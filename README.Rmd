@@ -38,6 +38,7 @@ We thank Mia Kibel for kindly pointing out this error.
 ## Additional analyses
 1. [Comparing the model fits for 2015 vs 2016](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.html) ([Mirror](https://mathewkiang.com/extras/add_2016_data/)): Our data (1979 to 2015) vs adding in the (released-after-submission) 2016 data. ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2016_data.Rmd).)
 1. [Comparing the model fits for 2015 vs 2017](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2017_data.html) ([Mirror](https://mathewkiang.com/extras/add_2017_data/)): Our data (1979 to 2015) vs adding in the (released-after-submission) 2017 data. ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2017_data.Rmd).)
+1. [Counterfactual world](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis.html): A simple counterfactual analysis where the Black population had the same opioid-related mortality rate as the White population. ([Code](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis.Rmd).)
 
 
 # Requirements
