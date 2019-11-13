@@ -245,6 +245,8 @@ This is a straightforward analysis with strong assumptions. These results reflec
 On top of this, all limitations in our paper regarding the data still hold. Opioid-related deaths have undoubtedly increased over this period, but so has our detection and testing of them --- we cannot disentable how much of the increase is due to increasing prevalence of testing over time and how much is due to increasing deaths. Likewise, there is substantial geographic variation in the quality of post-mortem testing.
 
 ### Save csv
+The data can be found online [in the Github repo.](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis_excess_deaths.csv)
+
 ```{r}
 readr::write_csv(excess_df, "./counterfactual_analysis_excess_deaths.csv")
 ```
