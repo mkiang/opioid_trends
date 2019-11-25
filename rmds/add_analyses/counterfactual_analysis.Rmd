@@ -15,13 +15,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The analysis in our paper is entirely descriptive. However, to contextualize the opioid epidemic, we could imagine a counterfactual world in which the Black population experienced the same opioid-related mortality rate as the White population. What would this look like? How many more deaths would there be? 
 
-There are at least a couple ways to do this, but the most simplest and most transparent way is to (1) apply the age-specific opioid-related mortality rates of the White population to the observed Black population counts for each year, and then (2) compare the counterfactual number of deaths to the observed number of deaths to get the number of "excess deaths" each year. 
+There are at least a couple ways to do this, but the simplest and most transparent way is to (1) apply the age-specific opioid-related mortality rates of the White population to the observed Black population for each year, and then (2) compare this *counterfactual* number of deaths to the observed number of deaths to get the number of "excess deaths" each year. 
 
 ## Analysis
 
 ### Import the data 
 
-We'll begin by loading up necessary packages and importing the data. Note that the data in the paper only go up to 2015 so we use the data file from [an updated analysis](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2017_data.html) to get 2017 data. 
+We'll begin by loading up necessary packages and importing the data. Note that the data in [the paper](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx) only go up to 2015 so we use the data file from [an updated analysis](https://htmlpreview.github.io/?https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/add_2017_data.html) to get 2017 data. 
 
 ```{r, error=FALSE, warning=FALSE, message=FALSE, results='hide'}
 library(tidyverse)
@@ -81,7 +81,11 @@ observed_df <- observed_df %>%
 ```
 
 ```{r}
-DT::datatable(observed_df, rownames = FALSE)
+DT::datatable(
+  observed_df,
+  rownames = FALSE,
+  colnames = c("Year", "Opioid type", "Observed Deaths")
+)
 ```
 
 ### Create a counterfactual dataframe
@@ -132,7 +136,11 @@ counter_df <- counter_df %>%
 ```
 
 ```{r}
-DT::datatable(counter_df)
+DT::datatable(
+  counter_df,
+  rownames = FALSE,
+  colnames = c("Year", "Opioid type", "Counterfactual Deaths")
+)
 ```
 
 ### Calculate the "excess deaths"
@@ -154,14 +162,25 @@ excess_df <- counter_df %>%
 Note that we cannot have "fractional deaths" so we round the excess results. 
 
 ```{r}
-DT::datatable(excess_df, rownames = FALSE)
+DT::datatable(
+  excess_df,
+  rownames = FALSE,
+  colnames = c(
+    "Year",
+    "Opioid type",
+    "Counterfactual Deaths",
+    "Observed Deaths",
+    "Excess Deaths",
+    "Cumulative Excess Deaths"
+  )
+)
 ```
 
 ## Plot the number of excess deaths, by type, 1979 to 2017 (ICD-9 categories)
 
 Note, in 1999, the CDC switched from ICD-9 to ICD-10. Therefore, for 1978 to 1998, opioid categories only consisted of all opioids, heroin, opium, or methatdone. We plot the excess deaths here:
 
-```{r}
+```{r, fig.align='center'}
 ggplot2::ggplot(
   excess_df %>%
     dplyr::filter(death_type %in% c("opioid", "heroin", "opium", "methadone")),
@@ -173,9 +192,9 @@ ggplot2::ggplot(
 
 ## Plot the number of excess deaths, by type, 1999 to 2017 (ICD-10 categories)
 
-The ICD-10 data (1999 to 2017) have finer opioid categories:
+The ICD-10 data (1999 to 2017) have finer opioid categories. Note the changing y-axis scale:
 
-```{r fig.height=12, fig.width=8}
+```{r fig.height=12, fig.width=8, fig.align='center'}
 ggplot2::ggplot(
   excess_df %>%
     dplyr::filter(year > 1998) %>%
@@ -190,10 +209,11 @@ ggplot2::ggplot(
                       scales = "free") +
   ggplot2::theme_bw()
 ```
-Note the changing y-axis scale. 
+
+
 
 ## Plot the *cumulative* number of excess deaths, by type, 1979 to 2017 (ICD-9 categories)
-```{r}
+```{r, fig.align='center'}
 ggplot2::ggplot(
   excess_df %>%
     dplyr::filter(death_type %in% c("opioid", "heroin", "opium", "methadone")),
@@ -207,7 +227,7 @@ ggplot2::ggplot(
 
 Again, note the changing y-axis scale. 
 
-```{r fig.height=12, fig.width=8}
+```{r fig.height=12, fig.width=8, fig.align='center'}
 ggplot2::ggplot(
   excess_df %>%
     dplyr::filter(year > 1998) %>%
@@ -236,15 +256,15 @@ Between 1999 and 2017, when the death certificates had more opioid types, there 
 - `r excess_df %>% filter(year == 2017, death_type == "natural") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more prescription opioid related deaths in the Black population. 
 - `r excess_df %>% filter(year == 2017, death_type == "synth") %>% pull(cumulative_excess) %>% prettyNum(., big.mark = ",")` more synthetic opioid related deaths in the Black population. 
 
-Historically, the Black opioid-related mortality rate was lower than the the White opioid-related mortality rate. Under the same assumptions of our model, there would have been `r excess_df %>% filter(death_type == "opioid") %>% filter(cumulative_excess == min(cumulative_excess)) %>% pull(cumulative_excess) %>% abs(.) %>% prettyNum(., big.mark = ",")` fewer opioid-related deaths in the Black population from 1979 to `r excess_df %>% filter(death_type == "opioid") %>% filter(cumulative_excess == min(cumulative_excess)) %>% pull(year) %>% prettyNum(., big.mark = "")`.
+From 1979 to about 2000, the Black opioid-related mortality rate was higher than the the White opioid-related mortality rate. Under the same assumptions of our model, there would have been `r excess_df %>% filter(death_type == "opioid") %>% filter(cumulative_excess == min(cumulative_excess)) %>% pull(cumulative_excess) %>% abs(.) %>% prettyNum(., big.mark = ",")` fewer opioid-related deaths in the Black population from 1979 to `r excess_df %>% filter(death_type == "opioid") %>% filter(cumulative_excess == min(cumulative_excess)) %>% pull(year) %>% prettyNum(., big.mark = "")`.
 
 
 ### Limitations
-This is a straightforward analysis with strong assumptions. These results reflect an impossible world where the opioid-related mortality rate in the Black population is identical to the White population, where the public health and medical response to the epidemic would remain the same, and where the supply/demand/production of the illicit drug market would have been the same. 
+This is a straightforward analysis with strong assumptions. This isn't mean to be comprehensive or sophisticated — rather it is mean to be transparent. These results reflect an impossible world where the opioid-related mortality rate in the Black population is identical to the White population, where the public health and medical response to the epidemic would remain the same, and where the supply, demand, and production of the illicit drug market would have been the same. 
 
-On top of this, all limitations in our paper regarding the data still hold. Opioid-related deaths have undoubtedly increased over this period, but so has our detection and testing of them --- we cannot disentable how much of the increase is due to increasing prevalence of testing over time and how much is due to increasing deaths. Likewise, there is substantial geographic variation in the quality of post-mortem testing.
+On top of this, all limitations in [our paper](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx) regarding the data still hold. Opioid-related deaths have undoubtedly increased over this period, but so has our detection and testing of them --- we cannot disentable how much of the increase is due to increasing prevalence of testing over time and how much is due to increasing deaths. Likewise, there is substantial geographic variation in the quality of post-mortem testing.
 
-### Save csv
+### Save `csv`
 The data can be found online [in the Github repo.](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis_excess_deaths.csv)
 
 ```{r}
