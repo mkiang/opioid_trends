@@ -260,9 +260,9 @@ From 1979 to about 2000, the Black opioid-related mortality rate was higher than
 
 
 ### Limitations
-This is a straightforward analysis with strong assumptions. This isn't mean to be comprehensive or sophisticated — rather it is mean to be transparent. These results reflect an impossible world where the opioid-related mortality rate in the Black population is identical to the White population, where the public health and medical response to the epidemic would remain the same, and where the supply, demand, and production of the illicit drug market would have been the same. 
+This is a straightforward analysis with strong assumptions. This isn't meant to be comprehensive or sophisticated  --- rather it is meant to be transparent. These results reflect an impossible world where the opioid-related mortality rate in the Black population is identical to the White population, where the public health and medical response to the epidemic would remain the same, and where the supply, demand, and production of the illicit drug market would have been the same. 
 
-On top of this, all limitations in [our paper](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx) regarding the data still hold. Opioid-related deaths have undoubtedly increased over this period, but so has our detection and testing of them --- we cannot disentable how much of the increase is due to increasing prevalence of testing over time and how much is due to increasing deaths. Likewise, there is substantial geographic variation in the quality of post-mortem testing.
+On top of this, all limitations in [our paper](https://journals.lww.com/epidem/Fulltext/2018/09000/Trends_in_Black_and_White_Opioid_Mortality_in_the.16.aspx) regarding the data still hold. Opioid-related deaths have undoubtedly increased over this period, but so has our detection and testing of them --- we cannot disentangle how much of the increase is due to increasing prevalence of testing over time and how much is due to increasing deaths. Likewise, there is substantial geographic variation in the quality of post-mortem testing.
 
 ### Save `csv`
 The data can be found online [in the Github repo.](https://github.com/mkiang/opioid_trends/blob/master/rmds/add_analyses/counterfactual_analysis_excess_deaths.csv)
