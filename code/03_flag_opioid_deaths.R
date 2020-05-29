@@ -172,7 +172,7 @@ other_all_pop <- pop_df %>%
 
 black_white_nh_pop <- pop_df %>% 
     filter(race %in% c("white", "black"),
-           hispanic == 1)  %>% 
+           hispanic == 0)  %>% 
     group_by(age, race, year) %>% 
     summarize(pop = sum(pop_est)) %>%
     ungroup() %>% 
