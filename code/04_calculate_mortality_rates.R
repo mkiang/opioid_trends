@@ -9,8 +9,7 @@ csv_folder <- config::get()$sav_folder
 ## Get data ----
 all_data <- read.csv(sprintf('%s/working_opioid_data.csv', csv_folder), 
                      stringsAsFactors = FALSE) %>% 
-    dplyr::mutate(age_cat = narcan::categorize_age_5(age)) %>% 
-    dplyr::select(-sex)
+    dplyr::mutate(age_cat = narcan::categorize_age_5(age)) 
 
 ## Calculate age-specific rates ----
 ## We just use purrr to loop through the columns we are interested in
@@ -31,7 +30,7 @@ age_spec_rates <- purrr::map2(.x = c_base,
                                                              !!rlang::sym(.y))) %>% 
     dplyr::bind_cols() %>% 
     dplyr::ungroup() %>% 
-    dplyr::select(year, age, age_cat, race, pop, pop_std, unit_w, 
+    dplyr::select(year, age, age_cat, race_ethnicity, pop, pop_std, unit_w, 
                   dplyr::ends_with("_rate"), dplyr::ends_with("_var")) %>% 
     dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_rate"), 
                                  dplyr::ends_with("_var")), 
@@ -46,13 +45,13 @@ age_std_wide <-
                .f = ~ narcan::calc_stdrate_var(age_spec_rates,
                                                !!rlang::sym(paste0(.x, "_rate")), 
                                                !!rlang::sym(paste0(.x, "_var")), 
-                                               year, race)) %>% 
+                                               year, race_ethnicity)) %>% 
     dplyr::bind_cols() %>% 
     dplyr::ungroup() %>% 
-    dplyr::select(year, race, 
+    dplyr::select(year, race_ethnicity, 
                   dplyr::ends_with("_rate"), 
                   dplyr::ends_with("_var")) %>% 
-    dplyr::arrange(race, year)
+    dplyr::arrange(race_ethnicity, year)
 
 write.csv(age_std_wide, 
           sprintf("%s/age_standardized_rates_wide.csv", csv_folder), 
@@ -60,12 +59,12 @@ write.csv(age_std_wide,
 
 ## Now convert to long format
 age_std_long <- age_std_wide %>% 
-    dplyr::select(year, race, ends_with("rate")) %>% 
+    dplyr::select(year, race_ethnicity, ends_with("rate")) %>% 
     tidyr::gather(opioid_type, std_rate, opioid_rate:nonh_nonm_rate) %>% 
     dplyr::mutate(opioid_type = gsub("_rate", "", opioid_type)) %>% 
     dplyr::left_join(
         age_std_wide %>% 
-            dplyr::select(year, race, ends_with("var")) %>% 
+            dplyr::select(year, race_ethnicity, ends_with("var")) %>% 
             tidyr::gather(opioid_type, var, opioid_var:nonh_nonm_var) %>% 
             dplyr::mutate(opioid_type = gsub("_var", "", opioid_type))
     )

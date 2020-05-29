@@ -3,7 +3,7 @@ library(tidyverse)
 library(narcan)
 
 ## Pull in YAML config ----
-cfig <- config::get()
+cfig <- config::get(config = "dev")
 
 ## Define parameters ---- 
 raw_folder <- cfig$raw_folder

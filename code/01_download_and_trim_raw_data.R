@@ -11,7 +11,7 @@ library(tidyverse)
 library(narcan)
 
 ## Pull in YAML config ----
-cfig <- config::get()
+cfig <- config::get(config = "dev")
 
 ## Define parameters ---- 
 raw_folder <- cfig$raw_folder
@@ -34,8 +34,10 @@ narcan::mkdir_p(raw_folder)
 download_mcod_wrapper <- function(year, download_dir) {
     if (year >= 1979 & year <= 1998) {
         narcan::download_mcod_dta(year, download_dir = download_dir)
-    } else {
+    } else if (year >= 1999 & year <= 2017) {
         narcan::download_mcod_csv(year, download_dir = download_dir)
+    } else {
+        
     }
 }
 
@@ -46,9 +48,12 @@ load_mcod_wrapper <- function(year, download_dir) {
         fname <- sprintf("%s/mort%s.dta.zip", download_dir, year)
         df    <- haven::read_dta(fname) %>% 
                      narcan::zap_dta_data(dta_df = .)
-    } else {
+    } else if (year >= 1999 & year <= 2017) {
         fname <- sprintf("%s/mort%s.csv.zip", download_dir, year)
         df    <- readr::read_csv(fname)
+    ## NBER public version of 2018 is not up yet so use restricted version for now
+    } else if (year == 2018) {
+        df <- narcan:::.import_restricted_data("./data_private/Mort2018US.AllCnty.txt", year)
     }
     return(df %>% dplyr::mutate(year = year))
 }
