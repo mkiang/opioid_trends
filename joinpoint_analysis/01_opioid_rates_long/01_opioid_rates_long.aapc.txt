@@ -1,10 +1,10 @@
 "opioid_type";"race";"Joinpoint Model";"AAPC Index";"Start Obs";"End Obs";"AAPC";"AAPC C.I. Low";"AAPC C.I. High";"Statistically Significant (0=No  1=Yes)";"Test Statistic";"P-Value"
-"drug";"black";4;Full Range;1979;2015;4.087;1.930;6.289;1;3.749;0.000
-"drug";"total";4;Full Range;1979;2015;4.552;3.593;5.519;1;9.470;0.000
-"drug";"white";5;Full Range;1979;2015;5.130;3.996;6.275;1;9.045;0.000
-"nonopioid";"black";3;Full Range;1979;2015;3.301;-2.497;9.444;0;1.102;0.270
-"nonopioid";"total";3;Full Range;1979;2015;2.470;1.299;3.654;1;4.161;0.000
-"nonopioid";"white";3;Full Range;1979;2015;2.520;1.553;3.497;1;5.147;0.000
-"opioid";"black";2;Full Range;1979;2015;6.216;5.134;7.310;1;11.538;0.000
-"opioid";"total";2;Full Range;1979;2015;9.504;8.814;10.199;1;28.124;0.000
-"opioid";"white";3;Full Range;1979;2015;9.901;8.767;11.048;1;17.828;0.000
+"drug";"black";4;"Full Range";1979;2019;5.931;2.330;9.659;1;3.265;0.00109
+"drug";"total";5;"Full Range";1979;2019;4.806;3.872;5.748;1;10.279;0.00000
+"drug";"white";5;"Full Range";1979;2019;5.105;4.295;5.921;1;12.619;0.00000
+"nonopioid";"black";5;"Full Range";1979;2019;3.779;-3.010;11.043;0;1.075;0.28257
+"nonopioid";"total";5;"Full Range";1979;2019;2.330;0.724;3.962;1;2.854;0.00431
+"nonopioid";"white";5;"Full Range";1979;2019;2.200;0.875;3.542;1;3.268;0.00108
+"opioid";"black";2;"Full Range";1979;2019;8.427;7.307;9.560;1;15.266;0.00000
+"opioid";"total";3;"Full Range";1979;2019;9.569;8.857;10.286;1;27.462;0.00000
+"opioid";"white";3;"Full Range";1979;2019;9.969;9.155;10.789;1;25.079;0.00000

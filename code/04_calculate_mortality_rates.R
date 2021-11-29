@@ -10,7 +10,8 @@ csv_folder <- config::get()$sav_folder
 all_data <- read.csv(sprintf('%s/working_opioid_data.csv', csv_folder), 
                      stringsAsFactors = FALSE) %>% 
     dplyr::mutate(age_cat = narcan::categorize_age_5(age)) %>% 
-    dplyr::select(-sex)
+    dplyr::select(-sex) %>% 
+    as_tibble()
 
 ## Calculate age-specific rates ----
 ## We just use purrr to loop through the columns we are interested in
@@ -31,8 +32,15 @@ age_spec_rates <- purrr::map2(.x = c_base,
                                                              !!rlang::sym(.y))) %>% 
     dplyr::bind_cols() %>% 
     dplyr::ungroup() %>% 
-    dplyr::select(year, age, age_cat, race, pop, pop_std, unit_w, 
-                  dplyr::ends_with("_rate"), dplyr::ends_with("_var")) %>% 
+    dplyr::select(year = `year...1`, 
+                  age = `age...2`, 
+                  age_cat = `age_cat...3`,
+                  race  = `race...16`,
+                  pop = `pop...17`,
+                  pop_std = `pop_std...18`, 
+                  unit_w = `unit_w...19`, 
+                  dplyr::ends_with("_rate"), 
+                  dplyr::ends_with("_var")) %>% 
     dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_rate"), 
                                  dplyr::ends_with("_var")), 
                      coalesce, 0)
@@ -49,7 +57,8 @@ age_std_wide <-
                                                year, race)) %>% 
     dplyr::bind_cols() %>% 
     dplyr::ungroup() %>% 
-    dplyr::select(year, race, 
+    dplyr::select(year = `year...1`,
+                  race = `race...2`, 
                   dplyr::ends_with("_rate"), 
                   dplyr::ends_with("_var")) %>% 
     dplyr::arrange(race, year)

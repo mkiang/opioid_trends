@@ -1,0 +1,10 @@
+"opioid_type";"race";"Model"
+heroin;black;3
+heroin;total;5
+heroin;white;5
+methadone;black;4
+methadone;total;4
+methadone;white;3
+nonh_nonm;black;3
+nonh_nonm;total;5
+nonh_nonm;white;5

@@ -17,8 +17,8 @@ cfig <- config::get()
 raw_folder <- cfig$raw_folder
 year_0     <- cfig$start_year
 year_n     <- cfig$end_year
-del_zip    <- cfig$delete_zip_orig
-paral_proc <- cfig$proc_in_parallel
+del_zip    <- FALSE # cfig$delete_zip_orig
+paral_proc <- TRUE # cfig$proc_in_parallel
 
 ## Load `parallel` package if necessary ----
 if (paral_proc) {

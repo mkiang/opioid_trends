@@ -117,14 +117,24 @@ if (paral_proc) {
 ##  (5) filter out rows with missing age and subset to total/white/black
 
 working_data <- opioid_data %>% 
-    select(year, age, age_cat, total_d = deaths, opioid_d = opioid_death, 
-           drug_d = drug_death, nonop_drug_d = nonop_drug_death, 
-           had_opium = opium_present, had_heroin = heroin_present, 
-           had_natural = other_natural_present, 
-           had_methadone = methadone_present, had_synth = other_synth_present, 
-           had_other_op = other_op_present, 
-           had_unspec_op = unspecified_op_present, 
-           had_nonh_nonm = nonh_nonm, race = race_ethnicity) %>% 
+    select(
+        year,
+        age,
+        age_cat,
+        total_d = deaths,
+        opioid_d = opioid_death,
+        drug_d = drug_death,
+        nonop_drug_d = nonop_drug_death,
+        had_opium = opium_present,
+        had_heroin = heroin_present,
+        had_natural = other_natural_present,
+        had_methadone = methadone_present,
+        had_synth = other_synth_present,
+        had_other_op = other_op_present,
+        had_unspec_op = unspecified_op_present,
+        had_nonh_nonm = nonh_nonm,
+        race = race_ethnicity
+    ) %>% 
     dplyr::mutate(sex = "both") %>% 
     narcan::add_pop_counts(.) %>% 
     narcan::add_std_pop(.) %>%
@@ -140,3 +150,4 @@ if (del_clean) {
                            pattern = "cleaned_mcod_[0-9]{4}.RDS", 
                            full.names = TRUE))
 }
+

@@ -1,0 +1,10 @@
+"opioid_type";"race";"Model"
+drug;black;4
+drug;total;5
+drug;white;5
+nonopioid;black;5
+nonopioid;total;5
+nonopioid;white;5
+opioid;black;2
+opioid;total;3
+opioid;white;3

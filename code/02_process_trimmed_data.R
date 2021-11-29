@@ -10,8 +10,8 @@ raw_folder <- cfig$raw_folder
 sav_folder <- cfig$sav_folder
 year_0     <- cfig$start_year
 year_n     <- cfig$end_year
-del_trim   <- cfig$delete_trimmed
-paral_proc <- cfig$proc_in_parallel
+del_trim   <- FALSE # cfig$delete_trimmed
+paral_proc <- TRUE # cfig$proc_in_parallel
 
 ## Load parallel package if necessary ----
 if (paral_proc) {
@@ -40,6 +40,12 @@ process_looper <- function(csv_folder, year) {
         
         ## Unite all 20 contributory cause columns
         temp_df <- narcan::unite_records(temp_df)
+        
+        ## Some files (e.g., 2019) have race as a char instead of int
+        if (typeof(temp_df$race) == "character") {
+            temp_df <- temp_df %>% 
+                mutate(race = as.integer(race))
+        }
         
         ## Convert age, add hspanicr, remap race, and add categories
         temp_df <- temp_df %>% 

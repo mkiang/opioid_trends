@@ -1,2 +1,2 @@
 "Joinpoint Model";"AAPC Index";"Start Obs";"End Obs";"AAPC";"AAPC C.I. Low";"AAPC C.I. High";"Statistically Significant (0=No  1=Yes)";"Test Statistic";"P-Value"
-2;Full Range;1979;2015;3.099;2.192;4.014;1;6.770;0.000
+3;"Full Range";1979;2019;1.273;0.339;2.216;1;2.676;0.00745

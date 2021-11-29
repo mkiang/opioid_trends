@@ -1,3 +1,5 @@
+/data/cleaned_*.RDS
+
 # History files
 .Rhistory
 .Rapp.history
@@ -29,3 +31,4 @@ vignettes/*.pdf
 /raw_data/
 packrat/lib*/
 rmds/add_analyses/add_2016_data_cache/
+rmds/add_analyses/add_2019_data_cache/
